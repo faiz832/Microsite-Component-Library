@@ -283,7 +283,7 @@
                                         <img id="avatar-preview" class="h-8 w-8 object-cover rounded-full"
                                             src="{{ $avatarUrl }}" alt="User Avatar" />
                                     </div>
-                                    <h1 class="text-sm font-semibold capitalize truncate text-slate-700 dark:text-slate-200">Faiz Muhammad Risyad</h1>
+                                <h1 class="text-sm font-semibold capitalize truncate text-slate-700 dark:text-slate-200">{{ Auth::user()->name }}</h1>
                                 </div>
                                 <div class="my-2 border-b border-slate-900/10 dark:border-slate-300/10"></div>
                                 <a href="{{ route('dashboard') }}"

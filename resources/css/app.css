@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    input:-webkit-autofill {
+        background-color: transparent !important;
+        -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+        box-shadow: 0 0 0px 1000px transparent inset !important;
+        transition: background-color 5000s ease-in-out 0s,
+            color 5000s ease-in-out 0s;
+        border-width: 1px !important;
+    }
+
+    /* Dark mode autofill styles */
+    .dark input:-webkit-autofill {
+        background-color: #111827 !important; /* Tailwind 'gray-900' */
+        -webkit-box-shadow: 0 0 0px 1000px #111827 inset !important;
+        box-shadow: 0 0 0px 1000px #111827 inset !important;
+        color: #d1d5db !important; /* Tailwind 'gray-200' */
+    }
+
+    input:-webkit-autofill:focus {
+        --tw-ring-opacity: 1;
+        --tw-ring-color: rgb(168 85 247 / var(--tw-ring-opacity, 1));
+        --tw-border-opacity: 1;
+        border-color: rgb(168 85 247 / var(--tw-border-opacity, 1));
+        box-shadow: 0 0 0 1px rgba(168 85 247 / var(--tw-border-opacity, 1)) !important;
+    }
+}

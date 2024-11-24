@@ -1,7 +1,7 @@
 @section ('title', 'Register - Microsite Component Library')
 
 <x-guest-layout>
-    <h1 class="text-xl font-semibold text-center text-slate-700 dark:text-slate-200 mb-6">
+    <h1 class="text-xl tracking-tight font-semibold text-center text-slate-900 dark:text-slate-200 mb-6">
         Sign up to MCLibrary
     </h1>
 

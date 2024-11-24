@@ -4,7 +4,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <h1 class="text-xl font-semibold text-center text-slate-700 dark:text-slate-200 mb-6">
+    <h1 class="text-xl tracking-tight font-semibold text-center text-slate-900 dark:text-slate-200 mb-6">
         Sign in to MCLibrary
     </h1>
     <div class="border dark:border-slate-800 rounded-lg bg-white dark:bg-slate-900/30 p-6">

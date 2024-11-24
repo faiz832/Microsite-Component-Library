@@ -227,7 +227,7 @@
                                 </div>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="hidden sm:flex font-semibold text-center text-sm rounded-md px-3 py-2 text-slate-700 dark:text-slate-200 hover:bg-gray-200 dark:hover:bg-gray-600/30 transition">
+                                    class="hidden sm:flex font-semibold text-center text-sm rounded-md px-3 py-2 text-white dark:text-white bg-slate-900 dark:bg-purple-600 hover:bg-slate-700 dark:hover:bg-purple-500 transition">
                                     Sign In
                                 </a>
                             @endauth

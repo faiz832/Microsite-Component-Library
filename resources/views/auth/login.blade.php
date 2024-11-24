@@ -30,7 +30,7 @@
             <div class="flex items-center justify-between mb-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox"
-                        class="rounded border-gray-300 text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+                        class="rounded border-gray-300 dark:border-slate-700 text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-slate-900"
                         name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
@@ -44,7 +44,7 @@
 
             <div class="mb-4">
                 <x-primary-button
-                    class="w-full justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white dark:text-white bg-primary dark:bg-primary hover:bg-primaryDark dark:hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    class="w-full justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white dark:text-white bg-slate-900 dark:bg-purple-600 hover:bg-slate-700 dark:hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 transition">
                     {{ __('Sign in') }}
                 </x-primary-button>
             </div>
@@ -63,7 +63,7 @@
         <div class="mt-4">
             <a href=""
             {{-- <a href="{{ route('auth.google') }}" --}}
-                class="flex items-center justify-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg dark:bg-slate-200 hover:bg-gray-100 dark:hover:bg-gray-100 transition">
+                class="flex items-center justify-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg bg-slate-100 dark:bg-slate-100 hover:bg-white dark:hover:bg-white transition">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -83,7 +83,7 @@
         </div>
         <div class="text-sm text-center mt-5">
             <span class="text-slate-900 dark:text-slate-200">Don't have an account? </span>
-            <a href="{{ route('register') }}" class="text-primary hover:underline">
+            <a href="{{ route('register') }}" class="text-purple-600 hover:underline">
                 Sign Up
             </a>
         </div>

@@ -6,6 +6,20 @@
 
         <title>Documentation - Microsite Component Library</title>
 
+        <!-- Prevent Flash of Incorrect Theme -->
+        <script>
+            // Immediately invoked function to set the theme before page load
+            (function() {
+                let theme = localStorage.getItem("theme") || "system";
+                
+                if (theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
+                }
+            })();
+        </script>
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

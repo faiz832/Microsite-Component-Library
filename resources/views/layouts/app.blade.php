@@ -33,19 +33,18 @@
         <div class="min-h-screen bg-white dark:bg-bgDark">
             <x-navbar/>
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
+            <div class="min-h-[calc(100vh-114px)]">
+                <div class="px-4 sm:px-6 md:px-8">
+                    <div class="hidden sm:flex">
+                        <x-sidebar />
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                        <!-- Page Content -->
+                        <main>
+                            {{ $slot }}
+                        </main>
+                    </div>
+                </div>
+            </div>
 
             <!-- Page Footer -->
             <x-footer/>

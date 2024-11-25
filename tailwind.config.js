@@ -13,7 +13,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                bgDark: "#0a000f",
+                bgDark: "#09090b",
                 primaryDark: "#3d0b80",
                 primary: "#9a50fe",
                 secondary: "#9CD3D8",

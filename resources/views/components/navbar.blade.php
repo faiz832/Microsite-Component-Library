@@ -1,7 +1,7 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-40 w-full backdrop-blur flex-none bg-transparent border-b border-slate-900/10 dark:border-slate-300/10">
+<nav x-data="{ open: false }" class="sticky top-0 z-40 w-full backdrop-blur flex-none bg-transparent border-b border-gray-200 dark:border-gray-800">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center h-16 sm:border-0 border-slate-900/10 dark:border-slate-300/10 {{Route::is('home') ? 'border-0' : 'border-b'}}">
+        <div class="flex items-center h-16 sm:border-0 border-gray-200 dark:border-gray-800 {{Route::is('home') ? 'border-0' : 'border-b'}}">
             <div class="flex gap-4 items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
@@ -278,7 +278,7 @@
                                     </div>
                                 <h1 class="text-sm font-semibold capitalize truncate text-slate-700 dark:text-slate-200">{{ Auth::user()->name }}</h1>
                                 </div>
-                                <div class="my-2 border-b border-slate-900/10 dark:border-slate-300/10"></div>
+                                <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
                                 <a href="{{ route('dashboard') }}"
                                     class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                     role="menuitem">Dashboard</a>
@@ -288,7 +288,7 @@
                                 <a href="{{ route('settings.edit') }}"
                                     class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                     role="menuitem">Settings</a>
-                                <div class="my-2 border-b border-slate-900/10 dark:border-slate-300/10"></div>
+                                <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
                                 <a href="{{ route('docs') }}" class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">Docs</a>
                                 <div class="flex items-center p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
                                     <span>Switch Theme</span>
@@ -406,7 +406,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="my-2 border-b border-slate-900/10 dark:border-slate-300/10"></div>
+                                <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
                                 <form method="POST" action="{{ route('logout') }}" role="none">
                                     @csrf
                                     <button type="submit"
@@ -422,7 +422,7 @@
                                     Sign In
                                 </a>
                                 <a href="{{ route('docs') }}" class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">Docs</a>
-                                <div class="my-2 border-b border-slate-900/10 dark:border-slate-300/10"></div>
+                                <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
                                 <div class="flex items-center p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
                                     <span>Switch Theme</span>
                                     <!-- Theme button and dropdown -->

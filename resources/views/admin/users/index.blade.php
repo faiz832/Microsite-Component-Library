@@ -1,15 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('User Management') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="container mx-auto px-4 py-8">
-            <div class="bg-white rounded-lg shadow-lg p-6">
+    <div class="mx-auto py-6">
+        <div class="w-full">
+            <div class="rounded-md p-6 border border-gray-200 dark:border-gray-800">
                 <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-2xl font-bold text-gray-800">User Management</h1>
+                    <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-200 leading-tight">User Management</h1>
                 </div>
     
                 @if(session('success'))
@@ -25,33 +19,25 @@
                 @endif
     
                 <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white">
-                        <thead class="bg-gray-100">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-100 dark:bg-gray-900">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">ID</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">Role</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-white uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-200">
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-900">
                             @foreach($users as $user)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-white">{{ $user->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900 dark:text-white">{{ $user->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500 dark:text-white">{{ $user->email }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $user->name }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->email }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <form action="{{ route('admin.users.update.role', $user->id) }}" method="POST" class="flex items-center space-x-2">
+                                        <form action="{{ route('admin.users.update.role', $user->id) }}" method="POST" class="flex items-center justify-center space-x-2">
                                             @csrf
                                             @method('PATCH')
                                             <select name="role" class="text-sm border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -67,12 +53,14 @@
                                         </form>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $user->isUserActive() ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
-                                            {{ $user->isUserActive() ? 'Active' : 'Inactive' }}
-                                        </span>
+                                        <div class="flex justify-center items-center">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $user->isUserActive() ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
+                                                {{ $user->isUserActive() ? 'Active' : 'Inactive' }}
+                                            </span>
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex items-center space-x-2">
+                                        <div class="flex items-center justify-center space-x-2">
                                             @foreach($activations as $activation)
                                                 <form action="{{ route('admin.users.toggle.activation', $user->id) }}" method="POST">
                                                     @csrf

@@ -34,15 +34,15 @@
             <x-navbar/>
 
             <div class="min-h-[calc(100vh-114px)]">
-                <div class="px-4 sm:px-6 md:px-8">
-                    <div class="hidden sm:flex">
+                <div class="flex px-4 sm:px-6 md:px-8">
+                    <div class="hidden sm:flex mr-6">
                         <x-sidebar />
-
-                        <!-- Page Content -->
-                        <main>
-                            {{ $slot }}
-                        </main>
                     </div>
+                    
+                    <!-- Page Content -->
+                    <main class="w-full overflow-auto">
+                        {{ $slot }}
+                    </main>
                 </div>
             </div>
 

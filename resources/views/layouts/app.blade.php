@@ -31,7 +31,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white dark:bg-bgDark">
-            @include('layouts.navbar')
+            <x-navbar/>
 
             <!-- Page Heading -->
             @isset($header)
@@ -48,7 +48,7 @@
             </main>
 
             <!-- Page Footer -->
-            @include('layouts.footer')
+            <x-footer/>
         </div>
     </body>
 </html>

@@ -32,7 +32,7 @@
     </head>
     <body class="font-sans antialiased h-full">
         <div class="min-h-screen bg-white dark:bg-bgDark">
-            @include('layouts.navbar')
+            <x-navbar/>
     
             <!-- Page Content -->
             <div class="min-h-[calc(100vh-114px)]">
@@ -54,7 +54,7 @@
                 </div>
             </div>
     
-            @include('layouts.footer')
+            <x-footer/>
         </div>
     </body>
 </html>

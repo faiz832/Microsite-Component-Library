@@ -237,16 +237,9 @@
             </div>
 
             <!-- Search Icon -->
-            <div class="flex sm:hidden ml-auto p-2">
-                <div class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
-                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="M21 21l-4.35-4.35"></path>
-                    </svg>
-                </div>
-            </div>
+            <x-navbar-search />
 
-            <!-- Hamburger -->
+            <!-- Three Dots -->
             <div class="-mr-2 flex items-center sm:hidden relative gap-2" x-data="{ open: false }">
                 <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">

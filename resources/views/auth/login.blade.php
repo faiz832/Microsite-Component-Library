@@ -4,13 +4,18 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <h1 class="text-xl tracking-tight font-semibold text-center text-slate-900 dark:text-slate-200 mb-6">
+    <h1 class="text-xl tracking-tight font-semibold text-center text-gray-900 dark:text-gray-200 mb-6">
         Sign in to MCLibrary
     </h1>
-    <div class="border dark:border-slate-800 rounded-lg bg-white dark:bg-slate-900/30 p-6">
+    <div class="border dark:border-gray-800 rounded-lg bg-white dark:bg-gray-900/30 p-6">
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            @if(session('error'))
+                <div class="flex mb-4">
+                    <span class="text-center text-xs text-red-600 dark:text-red-400 space-y-1">{{ session('error') }}</span>
+                </div>
+            @endif
             <!-- Email Address -->
             <div class="mb-4">
                 <x-text-input id="email" class="block mt-1 w-full p-2 border rounded" type="email"
@@ -30,7 +35,7 @@
             <div class="flex items-center justify-between mb-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox"
-                        class="rounded border-gray-300 dark:border-slate-700 text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-slate-900"
+                        class="rounded border-gray-300 dark:border-gray-700 text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 dark:bg-gray-900"
                         name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
@@ -44,7 +49,7 @@
 
             <div class="mb-4">
                 <x-primary-button
-                    class="w-full justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white dark:text-white bg-slate-900 dark:bg-purple-600 hover:bg-slate-700 dark:hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 transition">
+                    class="w-full justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white dark:text-white bg-gray-900 dark:bg-purple-600 hover:bg-gray-700 dark:hover:bg-purple-500 focus:outline-none transition">
                     {{ __('Sign in') }}
                 </x-primary-button>
             </div>
@@ -53,7 +58,7 @@
             <div class="grow">
                 <hr>
             </div>
-            <div class="text-center px-3 text-slate-700 dark:text-slate-200">
+            <div class="text-center px-3 text-gray-700 dark:text-gray-200">
                 or
             </div>
             <div class="grow">
@@ -63,7 +68,7 @@
         <div class="mt-4">
             <a href=""
             {{-- <a href="{{ route('auth.google') }}" --}}
-                class="flex items-center justify-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg bg-slate-100 dark:bg-slate-100 hover:bg-white dark:hover:bg-white transition">
+                class="flex items-center justify-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg bg-gray-100 dark:bg-gray-100 hover:bg-white dark:hover:bg-white transition">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -82,7 +87,7 @@
             </a>
         </div>
         <div class="text-sm text-center mt-5">
-            <span class="text-slate-900 dark:text-slate-200">Don't have an account? </span>
+            <span class="text-gray-900 dark:text-gray-200">Don't have an account? </span>
             <a href="{{ route('register') }}" class="text-purple-600 hover:underline">
                 Sign Up
             </a>

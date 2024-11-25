@@ -2,14 +2,14 @@
     <button
         type="button"
         @click="isOpen = true"
-        class="hidden sm:flex items-center w-full sm:w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-600 shadow-sm rounded-md text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700">
+        class="hidden sm:flex items-center w-full sm:w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-gray-900/10 hover:ring-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600 shadow-sm rounded-md text-gray-400 dark:bg-gray-800 dark:ring-0 dark:text-gray-300 dark:highlight-white/5 dark:hover:bg-gray-700">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="M21 21l-4.35-4.35"></path>
         </svg>
         <span class="flex-auto">Quick search...</span>
-        <kbd class="font-sans font-semibold dark:text-slate-500">
-            <abbr title="Control" class="no-underline text-slate-300 dark:text-slate-500">Ctrl </abbr> K
+        <kbd class="font-sans font-semibold dark:text-gray-500">
+            <abbr title="Control" class="no-underline text-gray-300 dark:text-gray-500">Ctrl </abbr> K
         </kbd>
     </button>
 

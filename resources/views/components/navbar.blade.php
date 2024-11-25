@@ -25,7 +25,7 @@
                     close() { this.open = false }
                 }" class="relative text-left {{Route::is('docs') ? 'inline-block' : 'hidden'}}">
                     <div>
-                        <button @click="toggle()" type="button" class="text-xs leading-5 font-semibold text-slate-500 dark:text-slate-300 bg-slate-400/10 dark:bg-gray-900 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:hover:bg-slate-700" id="version-selector" aria-haspopup="true" x-bind:aria-expanded="open">
+                        <button @click="toggle()" type="button" class="text-xs leading-5 font-semibold text-gray-500 dark:text-gray-300 bg-gray-400/10 dark:bg-gray-900 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-gray-400/20 dark:hover:bg-gray-700" id="version-selector" aria-haspopup="true" x-bind:aria-expanded="open">
                             <span x-text="selectedVersion"></span>
                             <svg class="-mr-1 ml-2 mt-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -38,7 +38,7 @@
                         <div role="none">
                             <template x-for="version in versions" :key="version.value">
                                 <button @click="selectedVersion = version.value; close()" class="flex justify-between w-full p-1 text-sm leading-5 font-semibold rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
-                                    <span x-text="version.label" :class="selectedVersion === version.value ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'"></span>
+                                    <span x-text="version.label" :class="selectedVersion === version.value ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'"></span>
                                     <svg x-show="selectedVersion === version.value" class="h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                     </svg>
@@ -52,10 +52,10 @@
             <div class="flex h-max ml-auto">
                 <!-- Navigation Links -->
                 <div class="hidden sm:flex items-center">
-                    <a href="{{ route('docs') }}" class="text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
+                    <a href="{{ route('docs') }}" class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
                 </div>
                 
-                <div class="flex items-center border-l border-slate-200 ml-6 pl-4 gap-2 dark:border-slate-800">
+                <div class="flex items-center border-l border-gray-200 ml-6 pl-4 gap-2 dark:border-gray-800">
                     <!-- Theme button and dropdown -->
                     <div class="relative">
                         <div class="hidden sm:flex sm:items-center" x-data="{ 
@@ -82,7 +82,7 @@
                             <button 
                                 @click="open = !open" 
                                 type="button"
-                                class="flex items-center justify-center p-2 rounded-md text-slate-700 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-gray-600/30">
+                                class="flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600/30">
                                 <!-- Sun icon -->
                                 <svg x-show="theme === 'light'" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -127,7 +127,7 @@
                                 <button 
                                     @click="theme = 'light'; open = false" 
                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                    :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                    :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                             d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z">
@@ -138,7 +138,7 @@
                                 <button 
                                     @click="theme = 'dark'; open = false" 
                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                    :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                    :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24">
                                         <path 
                                             stroke="currentColor" 
@@ -159,7 +159,7 @@
                                 <button 
                                     @click="theme = 'system'; open = false" 
                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                    :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                    :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                     <svg class="h-5 w-5" viewBox="0 0 24 24">
                                         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"></circle>
                                         <path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"></path>
@@ -205,18 +205,18 @@
                                         style="display: none;">
                                         <div role="none">
                                             <a href="{{ route('dashboard') }}"
-                                                class="block px-4 py-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                                class="block px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                                 role="menuitem">Dashboard</a>
                                             <a href="{{ route('profile.edit') }}"
-                                                class="block px-4 py-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                                class="block px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                                 role="menuitem">Profile</a>
                                             <a href="{{ route('settings.edit') }}"
-                                                class="block px-4 py-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                                class="block px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                                 role="menuitem">Settings</a>
                                             <form method="POST" action="{{ route('logout') }}" role="none">
                                                 @csrf
                                                 <button type="submit"
-                                                    class="block w-full text-left px-4 py-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                                    class="block w-full text-left px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                                     role="menuitem"
                                                     onclick="event.preventDefault(); this.closest('form').submit();">
                                                     Log Out
@@ -227,7 +227,7 @@
                                 </div>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="hidden sm:flex font-semibold text-center text-sm rounded-md px-3 py-2 text-white dark:text-white bg-slate-900 dark:bg-purple-600 hover:bg-slate-700 dark:hover:bg-purple-500 transition">
+                                    class="hidden sm:flex font-semibold text-center text-sm rounded-md px-3 py-2 text-white dark:text-white bg-gray-900 dark:bg-purple-600 hover:bg-gray-700 dark:hover:bg-purple-500 transition">
                                     Sign In
                                 </a>
                             @endauth
@@ -241,7 +241,7 @@
 
             <!-- Three Dots -->
             <div class="-mr-2 flex items-center sm:hidden relative gap-2" x-data="{ open: false }">
-                <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
                     </svg>
@@ -276,21 +276,21 @@
                                         <img id="avatar-preview" class="h-8 w-8 object-cover rounded-full"
                                             src="{{ $avatarUrl }}" alt="User Avatar" />
                                     </div>
-                                <h1 class="text-sm font-semibold capitalize truncate text-slate-700 dark:text-slate-200">{{ Auth::user()->name }}</h1>
+                                <h1 class="text-sm font-semibold capitalize truncate text-gray-700 dark:text-gray-200">{{ Auth::user()->name }}</h1>
                                 </div>
                                 <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
                                 <a href="{{ route('dashboard') }}"
-                                    class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                    class="block p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                     role="menuitem">Dashboard</a>
                                 <a href="{{ route('profile.edit') }}"
-                                    class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                    class="block p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                     role="menuitem">Profile</a>
                                 <a href="{{ route('settings.edit') }}"
-                                    class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                    class="block p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                     role="menuitem">Settings</a>
                                 <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
-                                <a href="{{ route('docs') }}" class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">Docs</a>
-                                <div class="flex items-center p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
+                                <a href="{{ route('docs') }}" class="block p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">Docs</a>
+                                <div class="flex items-center p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
                                     <span>Switch Theme</span>
                                     <!-- Theme button and dropdown -->
                                     <div class="relative ml-auto">
@@ -363,7 +363,7 @@
                                                 <button 
                                                     @click="theme = 'light'; open = false" 
                                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                                    :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                                    :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                                             d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z">
@@ -374,7 +374,7 @@
                                                 <button 
                                                     @click="theme = 'dark'; open = false" 
                                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                                    :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                                    :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24">
                                                         <path 
                                                             stroke="currentColor" 
@@ -395,7 +395,7 @@
                                                 <button 
                                                     @click="theme = 'system'; open = false" 
                                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                                    :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                                    :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                                     <svg class="h-5 w-5" viewBox="0 0 24 24">
                                                         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"></circle>
                                                         <path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"></path>
@@ -410,7 +410,7 @@
                                 <form method="POST" action="{{ route('logout') }}" role="none">
                                     @csrf
                                     <button type="submit"
-                                        class="block w-full text-left p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                        class="block w-full text-left p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                         role="menuitem"
                                         onclick="event.preventDefault(); this.closest('form').submit();">
                                         Log Out
@@ -418,12 +418,12 @@
                                 </form>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="flex p-2 font-semibold text-center text-sm text-slate-700 dark:text-slate-200 hover:text-primary dark:hover:text-primary transition">
+                                    class="flex p-2 font-semibold text-center text-sm text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">
                                     Sign In
                                 </a>
-                                <a href="{{ route('docs') }}" class="block p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">Docs</a>
+                                <a href="{{ route('docs') }}" class="block p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">Docs</a>
                                 <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
-                                <div class="flex items-center p-2 text-sm rounded-md text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
+                                <div class="flex items-center p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30" role="menuitem">
                                     <span>Switch Theme</span>
                                     <!-- Theme button and dropdown -->
                                     <div class="relative ml-auto">
@@ -496,7 +496,7 @@
                                                 <button 
                                                     @click="theme = 'light'; open = false" 
                                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                                    :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                                    :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                                                             d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z">
@@ -507,7 +507,7 @@
                                                 <button 
                                                     @click="theme = 'dark'; open = false" 
                                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                                    :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                                    :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24">
                                                         <path 
                                                             stroke="currentColor" 
@@ -528,7 +528,7 @@
                                                 <button 
                                                     @click="theme = 'system'; open = false" 
                                                     class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                                    :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-slate-700 dark:text-slate-200'">
+                                                    :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
                                                     <svg class="h-5 w-5" viewBox="0 0 24 24">
                                                         <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"></circle>
                                                         <path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"></path>
@@ -550,7 +550,7 @@
     <!-- Mobile menu button -->
     <div class="mx-auto p-4 items-center sm:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
         <!-- Hamburger -->
-        <button @click="open = ! open" class="inline-flex items-center justify-center rounded text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+        <button @click="open = ! open" class="inline-flex items-center justify-center rounded text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

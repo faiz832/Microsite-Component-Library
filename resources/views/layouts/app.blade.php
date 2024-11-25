@@ -34,19 +34,18 @@
             <x-navbar/>
 
             <div class="min-h-[calc(100vh-114px)]">
-                <div class="flex px-4 sm:px-6 md:px-8">
-                    <div class="hidden sm:flex mr-6">
-                        <x-sidebar />
-                    </div>
+                <div class="flex gap-12 px-4 sm:px-6 md:px-8">
+                    <!-- Sidebar -->
+                    <x-sidebar />
                     
-                    <!-- Page Content -->
-                    <main class="w-full overflow-auto">
+                    <!-- Content -->
+                    <main class="w-full overflow-auto py-12">
                         {{ $slot }}
                     </main>
                 </div>
             </div>
 
-            <!-- Page Footer -->
+            <!-- Footer -->
             <x-footer/>
         </div>
     </body>

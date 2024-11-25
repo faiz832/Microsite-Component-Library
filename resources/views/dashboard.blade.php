@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="mx-auto py-6">
+    <div class="">
         <div class="p-6 rounded-md border border-gray-200 dark:border-gray-800">
             @role('admin')
                 <h1 class="text-2xl font-semibold text-gray-900 dark:text-gray-200 leading-tight">

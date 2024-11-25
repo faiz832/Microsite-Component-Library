@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="mx-auto py-6">
+    <div class="">
         <div class="w-full">
             <div class="rounded-md p-6 border border-gray-200 dark:border-gray-800">
                 <div class="flex justify-between items-center mb-6">

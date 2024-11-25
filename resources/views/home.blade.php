@@ -35,7 +35,7 @@
             @include('layouts.navbar')
     
             <!-- Page Content -->
-            <div class="min-h-[calc(100vh-130px)]">
+            <div class="min-h-[calc(100vh-114px)]">
                 <div class="px-4 sm:px-6 md:px-8">
                     <div class="relative max-w-5xl mx-auto py-14 sm:pt-24 lg:pt-32">
                         <h1 class="text-slate-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">Rapidly build responsive microsites effortlessly with Microsite Component Library.</h1>

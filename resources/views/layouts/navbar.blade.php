@@ -6,9 +6,9 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden' : 'block'}} h-6 w-auto fill-current text-primaryDark dark:text-slate-200" />
-                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden sm:block' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-slate-200" />
-                        <x-application-logo class="{{Route::is('docs') ? 'block sm:hidden' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-slate-200" />
+                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden' : 'block'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden sm:block' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-logo class="{{Route::is('docs') ? 'block sm:hidden' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
                     </a>
                 </div>
 

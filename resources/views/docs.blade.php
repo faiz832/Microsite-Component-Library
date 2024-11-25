@@ -35,7 +35,7 @@
             @include('layouts.navbar')
     
             <!-- Page Content -->
-            <div class="min-h-[calc(100vh-130px)]">
+            <div class="min-h-[calc(100vh-114px)]">
                
             </div>
     

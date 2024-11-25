@@ -2,7 +2,7 @@
     <button
         type="button"
         @click="isOpen = true"
-        class="hidden sm:flex items-center w-full sm:w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-600 shadow-sm rounded-lg text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700">
+        class="hidden sm:flex items-center w-full sm:w-72 text-left space-x-3 px-4 h-12 bg-white ring-1 ring-slate-900/10 hover:ring-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-600 shadow-sm rounded-md text-slate-400 dark:bg-slate-800 dark:ring-0 dark:text-slate-300 dark:highlight-white/5 dark:hover:bg-slate-700">
         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="M21 21l-4.35-4.35"></path>
@@ -46,7 +46,7 @@
             x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-95"
-            class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all dark:bg-gray-800 dark:divide-gray-700 dark:ring-white/10">
+            class="mx-auto max-w-3xl transform divide-y divide-gray-100 overflow-hidden rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all dark:bg-gray-800 dark:divide-gray-700 dark:ring-white/10">
             <div class="relative">
                 <svg class="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-400 dark:text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
@@ -68,7 +68,7 @@
                 </button>
             </div>
 
-            <ul class="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800 dark:text-gray-200">
+            <ul class="min-h-40 max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800 dark:text-gray-200">
                 <!-- Add your search results here -->
                 <li class="cursor-default select-none px-4 py-2">Search result 1</li>
                 <li class="cursor-default select-none px-4 py-2">Search result 2</li>
@@ -76,7 +76,7 @@
             </ul>
 
             <div class="flex flex-wrap items-center bg-gray-50 py-2.5 px-4 text-xs text-gray-700 dark:bg-gray-700 dark:text-gray-300">
-                Press <kbd class="mx-1 p-1 flex items-center justify-center rounded border bg-white font-semibold dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">Esc</kbd> to close
+                Press <kbd class="mx-1 p-1 flex items-center justify-center rounded-md border bg-white font-semibold dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">Esc</kbd> to close
             </div>
         </div>
     </div>

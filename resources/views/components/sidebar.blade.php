@@ -2,7 +2,12 @@
     <nav class="flex-1 py-12 space-y-6">
         <!-- Home Section -->
         <div>
-            <div class="mb-2">
+            <!-- Search -->
+            <div class="mb-4">
+                <x-sidebar-search />
+            </div>
+
+            <div class="mb-2 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <h2 class="px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
                     Home
                 </h2>

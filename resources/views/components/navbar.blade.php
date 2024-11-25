@@ -213,7 +213,7 @@
                                             <a href="{{ route('settings.edit') }}"
                                                 class="block px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                                 role="menuitem">Settings</a>
-                                            <form method="POST" action="{{ route('logout') }}" role="none">
+                                            <form method="POST" action="{{ route('logout') }}" role="none" style="margin-bottom: 0">
                                                 @csrf
                                                 <button type="submit"
                                                     class="block w-full text-left px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"

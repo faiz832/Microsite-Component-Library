@@ -1,3 +1,5 @@
+<title>User Management - Microsite Component Library</title>
+
 <x-app-layout>
     <div class="">
         <div class="w-full">

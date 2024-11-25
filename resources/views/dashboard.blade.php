@@ -1,3 +1,5 @@
+<title>Dashboard - Microsite Component Library</title>
+
 <x-app-layout>
     <div class="">
         <div class="p-6 rounded-md border border-gray-200 dark:border-gray-800">

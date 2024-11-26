@@ -15,13 +15,13 @@
 
     <div
         x-show="isOpen"
-        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="hidden sm:block fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20"
+        class="hidden sm:block fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 backdrop-blur-sm"
         role="dialog"
         aria-modal="true"
         style="display: none;">
@@ -33,7 +33,7 @@
             x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="fixed inset-0 bg-gray-500/70 transition-opacity dark:bg-gray-900/70 backdrop-blur-sm"
+            class="fixed inset-0 bg-gray-500/70 transition-opacity dark:bg-gray-900/70"
             @click="isOpen = false"
             aria-hidden="true">
         </div>

@@ -16,7 +16,7 @@
         x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100"
         x-transition:leave-end="opacity-0"
-        class="absolute top-0 right-0 h-screen w-full z-50"
+        class="absolute top-0 right-0 h-screen w-full z-50 backdrop-blur-sm"
         role="dialog"
         aria-modal="true"
         style="display: none;">
@@ -28,7 +28,7 @@
             x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
-            class="absolute top-0 left-0 h-screen w-full bg-gray-500/70 transition-opacity dark:bg-gray-900/70 backdrop-blur-sm"
+            class="absolute top-0 left-0 h-screen w-full bg-gray-500/70 transition-opacity dark:bg-gray-900/70"
             @click="open = false; document.documentElement.classList.remove('overflow-hidden')"
             aria-hidden="true">
         </div>

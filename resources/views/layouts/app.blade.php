@@ -39,7 +39,7 @@
                     <x-sidebar />
                     
                     <!-- Content -->
-                    <main class="w-full overflow-auto py-12">
+                    <main class="w-full overflow-auto py-6 sm:py-12">
                         {{ $slot }}
                     </main>
                 </div>

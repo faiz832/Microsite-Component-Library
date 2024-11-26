@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -24,17 +24,32 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        DB::transaction(function () use ($request) {
+            $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+            $validated = $request->validate([
+                'name' => 'string|max:255',
+                'email' => 'string|email|max:255|unique:users,email,' . $user->id,
+                'avatar' => 'nullable|image|mimes:png,jpg,jpeg,svg|max:2048',
+            ]);
 
-        $request->user()->save();
+            if ($request->hasFile('avatar')) {
+                $avatarPath = $request->file('avatar')->store('avatars', 'public');
+                $validated['avatar'] = $avatarPath;
+            }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+            $oldAttributes = $user->getAttributes();
+
+            if (isset($validated['email']) && $user->email !== $validated['email']) {
+                $validated['email_verified_at'] = null;
+            }
+
+            $user->update($validated);
+        });
+
+        return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -56,5 +71,12 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function settings(Request $request): View
+    {
+        return view('profile.settings', [
+            'user' => $request->user(),
+        ]);
     }
 }

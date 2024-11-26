@@ -179,7 +179,7 @@
                                     <button @click="open = !open" @click.away="open = false" class="flex items-center">
                                         <div class="avatar">
                                             @php
-                                                $avatarUrl = asset('assets/images/default-avatar.jpg'); // Default avatar URL
+                                                $avatarUrl = asset('assets/images/default-avatar.png'); // Default avatar URL
     
                                                 if (Auth::user()->avatar) {
                                                     if (Str::startsWith(Auth::user()->avatar, 'https://')) {
@@ -262,7 +262,7 @@
                             @auth
                                 <div class="flex pb-2 gap-2 items-center">
                                     @php
-                                        $avatarUrl = asset('assets/images/default-avatar.jpg'); // Default avatar URL
+                                        $avatarUrl = asset('assets/images/default-avatar.png'); // Default avatar URL
 
                                         if (Auth::user()->avatar) {
                                             if (Str::startsWith(Auth::user()->avatar, 'https://')) {
@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
                                 <div class="my-2 border-b border-gray-200 dark:border-gray-800"></div>
-                                <form method="POST" action="{{ route('logout') }}" role="none">
+                                <form method="POST" action="{{ route('logout') }}" role="none" style="margin-bottom: 0">
                                     @csrf
                                     <button type="submit"
                                         class="block w-full text-left p-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
@@ -551,7 +551,7 @@
     <div class="mx-auto p-4 items-center sm:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
 
         <!-- Hamburger Menu -->
-        <div class="{{Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') ? 'flex' : 'hidden'}}">
+        <div class="{{Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') || Route::is('settings.edit') ? 'flex' : 'hidden'}}">
             <x-sidebar-dashboard-mobile/>
         </div>
         

@@ -20,21 +20,21 @@ Route::get('/community', function () {
     return view('community');
 })->name('community');
 
-Route::get('/dashboard', function () {
+Route::get('/home/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'active'])->name('dashboard');
 
 Route::middleware(['auth', 'active'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/settings', [ProfileController::class, 'settings'])->name('settings.edit');
+    Route::get('/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/account/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/account/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/account/settings', [ProfileController::class, 'settings'])->name('settings.edit');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/users', [UserManagementController::class, 'index'])->name('admin.users.index');
-    Route::patch('/admin/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.update.role');
-    Route::patch('/admin/users/{user}/activation', [UserManagementController::class, 'toggleActivation'])->name('admin.users.toggle.activation');
+    Route::get('/home/users', [UserManagementController::class, 'index'])->name('admin.users.index');
+    Route::patch('/home/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.update.role');
+    Route::patch('/home/users/{user}/activation', [UserManagementController::class, 'toggleActivation'])->name('admin.users.toggle.activation');
 });
 
 require __DIR__.'/auth.php';

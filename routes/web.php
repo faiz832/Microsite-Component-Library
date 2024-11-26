@@ -12,14 +12,6 @@ Route::get('/docs', function () {
     return view('docs');
 })->name('docs');
 
-Route::get('/learn', function () {
-    return view('learn');
-})->name('learn');
-
-Route::get('/community', function () {
-    return view('community');
-})->name('community');
-
 Route::get('/home/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', 'active'])->name('dashboard');
@@ -31,7 +23,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/account/settings', [ProfileController::class, 'settings'])->name('settings.edit');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth', 'active', 'role:admin'])->group(function () {
     Route::get('/home/users', [UserManagementController::class, 'index'])->name('admin.users.index');
     Route::patch('/home/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.update.role');
     Route::patch('/home/users/{user}/activation', [UserManagementController::class, 'toggleActivation'])->name('admin.users.toggle.activation');

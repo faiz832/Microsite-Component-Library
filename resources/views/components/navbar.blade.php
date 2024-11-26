@@ -549,8 +549,15 @@
 
     <!-- Mobile menu button -->
     <div class="mx-auto p-4 items-center sm:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
-        <!-- Hamburger -->
-        <x-sidebar-mobile/>
+
+        <!-- Hamburger Menu -->
+        <div class="{{Route::is('dashboard') ? 'flex' : 'hidden'}}">
+            <x-sidebar-dashboard-mobile/>
+        </div>
+        
+        <div class="{{Route::is('docs') ? 'flex' : 'hidden'}}">
+            <x-sidebar-docs-mobile/>
+        </div>
 
         <!-- Breadcrumb -->
         <x-breadcrumb />

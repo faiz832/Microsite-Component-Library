@@ -9,7 +9,7 @@
         </svg>
         <span class="flex-auto">Search components...</span>
         <kbd class="font-sans font-semibold dark:text-gray-500">
-            <abbr title="Control" class="no-underline text-gray-300 dark:text-gray-500">Ctrl </abbr> K
+            <abbr title="Control" class="no-underline dark:text-gray-500">Ctrl </abbr> K
         </kbd>
     </button>
 

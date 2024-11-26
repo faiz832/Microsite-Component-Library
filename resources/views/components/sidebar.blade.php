@@ -1,5 +1,5 @@
 <aside class="hidden sm:flex flex-col w-64">
-    <nav class="flex-1 py-12 space-y-6">
+    <nav class="flex-1 py-12 space-y-4">
         <!-- Home Section -->
         <div>
             <!-- Search -->

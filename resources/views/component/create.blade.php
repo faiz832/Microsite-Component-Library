@@ -57,9 +57,9 @@
                         </div>
         
                         <div class="mt-6 flex">
-                            <x-secondary-button>
+                            <a href="{{ route('component.index') }}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none disabled:opacity-25 transition">
                                 {{ __('Cancel') }}
-                            </x-secondary-button>
+                            </a>
         
                             <x-confirm-button class="ml-3">
                                 {{ __('Create') }}

@@ -50,10 +50,13 @@
                                                 class="px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
                                                 Edit
                                             </a>
-                                            <a href="{{ route('component.destroy', $component->id) }}" 
-                                                class="px-2.5 py-1.5 text-xs text-white rounded-md bg-red-600 hover:bg-red-700">
-                                                Delete
-                                            </a>
+                                            <div x-data="{ componentId: {{ $component->id }} }">
+                                                <button type="button" 
+                                                    class="px-2.5 py-1.5 text-xs text-white rounded-md bg-red-600 hover:bg-red-700"
+                                                    x-on:click="$dispatch('open-modal', 'delete-component-' + componentId)">
+                                                    Delete
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -63,5 +66,33 @@
                 </table>
             </div>
         </div>
+
+        @foreach($components as $item)
+            <!-- Delete component Modals -->
+            <x-modal :name="'delete-component-' . $item->id" focusable>
+                <form method="POST" action="{{ route('component.destroy', $item->id) }}" class="p-6">
+                    @csrf
+                    @method('DELETE')
+
+                    <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                        {{ __('Delete Component') }}
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __("Are you sure you want to delete this component? This action cannot be undone.") }}
+                    </p>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('Cancel') }}
+                        </x-secondary-button>
+
+                        <x-danger-button class="ml-3">
+                            {{ __('Delete component') }}
+                        </x-danger-button>
+                    </div>
+                </form>
+            </x-modal>
+        @endforeach
     </div>
 </x-app-layout>

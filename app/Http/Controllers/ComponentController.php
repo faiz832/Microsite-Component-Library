@@ -41,14 +41,12 @@ class ComponentController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'version_id' => 'required|exists:versions,id',
             'category_id' => 'required|exists:categories,id',
             'component' => 'required|string|max:255'
         ]);
 
-        // Cek apakah komponen sudah ada
         $existingComponent = Component::where([
             'version_id' => $request->version_id,
             'category_id' => $request->category_id,
@@ -59,7 +57,6 @@ class ComponentController extends Controller
             return back()->with('error', 'Component with same version, category, and name already exists.');
         }
 
-        // Buat komponen baru
         Component::create([
             'version_id' => $request->version_id,
             'category_id' => $request->category_id,
@@ -71,17 +68,14 @@ class ComponentController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Temukan komponen yang akan diupdate
         $component = Component::findOrFail($id);
 
-        // Validasi input
         $request->validate([
             'version_id' => 'required|exists:versions,id',
             'category_id' => 'required|exists:categories,id',
             'component' => 'required|string|max:255'
         ]);
 
-        // Cek apakah komponen sudah ada
         $existingComponent = Component::where([
             'version_id' => $request->version_id,
             'category_id' => $request->category_id,
@@ -92,7 +86,6 @@ class ComponentController extends Controller
             return back()->with('error', 'Component with same version, category, and name already exists.');
         }
 
-        // Update komponen
         $component->update([
             'version_id' => $request->version_id,
             'category_id' => $request->category_id,
@@ -104,14 +97,13 @@ class ComponentController extends Controller
 
     public function destroy($id)
     {
-        // Temukan dan hapus komponen
         $component = Component::findOrFail($id);
         $component->delete();
 
         return back()->with('success', 'Component deleted successfully.');
     }
 
-    // Metode tambahan untuk mendapatkan categories berdasarkan version_id
+    // Get categories by version
     public function getCategories($versionId)
     {
         $categories = Category::where('version_id', $versionId)->get();

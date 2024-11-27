@@ -95,7 +95,7 @@
         </div>
 
         @foreach($users as $user)
-            <x-modal :name="'confirm-role-update-' . $user->id">
+            <x-modal :name="'confirm-role-update-' . $user->id" focusable>
                 <form method="POST" action="{{ route('admin.users.update.role', $user->id) }}" class="p-6">
                     @csrf
                     @method('PATCH')

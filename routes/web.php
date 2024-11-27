@@ -15,6 +15,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/docs', [DocsController::class, 'index'])->name('docs');
+Route::get('/get-categories/{versionId}', [ComponentController::class, 'getCategories']);
 
 // Auth Routes
 Route::middleware(['auth', 'active'])->group(function () {
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/home/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Component
+    Route::resource('/data/component', ComponentController::class);
 
     // Category
     Route::resource('/data/category', CategoryController::class);

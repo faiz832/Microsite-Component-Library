@@ -109,8 +109,9 @@
                     </p>
         
                     <!-- Role Selection -->
-                    <div class="mt-4">
-                        <select name="role" class="w-1/2 text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:bg-gray-800 dark:border-gray-400 focus:border-purple-500 dark:focus:border-purple-500 focus:ring-purple-500">
+                    <div class="mt-4 max-w-sm">
+                        <x-input-label for="role" value="{{ __('Choose Role') }}" />
+                        <select name="role" class="mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                             @foreach($roles as $role)
                                 <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
                                     {{ ucfirst($role->name) }}
@@ -124,7 +125,7 @@
                             {{ __('Cancel') }}
                         </x-secondary-button>
                         <x-confirm-button class="ml-3" type="submit">
-                            {{ __('Confirm') }}
+                            {{ __('Update') }}
                         </x-confirm-button>
                     </div>
                 </form>

@@ -78,7 +78,7 @@
                 </p>
 
                 <div class="mt-4 max-w-sm">
-                    <x-input-label for="version_id" value="{{ __('Insert Version') }}"/>
+                    <x-input-label for="version_id" value="{{ __('Choose Version') }}"/>
                     <select name="version_id" class="mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                         @foreach($versions as $version)
                             <option value="{{ $version->id }}">
@@ -129,7 +129,7 @@
                     </p>
 
                     <div class="mt-4 max-w-sm">
-                        <x-input-label for="version_id" value="{{ __('Input Version') }}"/>
+                        <x-input-label for="version_id" value="{{ __('Choose Version') }}"/>
 
                         <select name="version_id" class="mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                             @foreach($versions as $version)
@@ -142,7 +142,7 @@
                     </div>
 
                     <div class="mt-4 max-w-sm">
-                        <x-input-label for="category" value="{{ __('Input Category') }}"/>
+                        <x-input-label for="category" value="{{ __('Insert Category') }}"/>
 
                         <x-text-input
                             id="category"

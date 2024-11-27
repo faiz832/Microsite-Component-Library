@@ -19,7 +19,7 @@ Route::get('/docs', [DocsController::class, 'index'])->name('docs');
 // Auth Routes
 Route::middleware(['auth', 'active'])->group(function () {
     // Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/home/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Component
 

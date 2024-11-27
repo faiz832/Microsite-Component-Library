@@ -5,21 +5,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\VersionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ComponentController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DocsController;
 
+// Guest Routes
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/docs', function () {
-    return view('docs');
-})->name('docs');
+Route::get('/docs', [DocsController::class, 'index'])->name('docs');
 
-Route::get('/home/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', 'active'])->name('dashboard');
-
+// Auth Routes
 Route::middleware(['auth', 'active'])->group(function () {
     // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Component
 
@@ -38,6 +38,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/account/settings', [ProfileController::class, 'settings'])->name('settings.edit');
 });
 
+// Admin Only
 Route::middleware(['auth', 'active', 'role:admin'])->group(function () {
     Route::get('/home/users', [UserManagementController::class, 'index'])->name('admin.users.index');
     Route::patch('/home/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('admin.users.update.role');

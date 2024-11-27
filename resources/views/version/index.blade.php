@@ -17,7 +17,7 @@
             <x-message/>
 
             <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-version')" 
-                class="mt-6 inline-flex items-center px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
+                class="mt-4 inline-flex items-center px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700 transition">
                 Create New Version
             </button>
 
@@ -75,14 +75,14 @@
                     {{ __("Please insert a new version.") }}
                 </p>
 
-                <div class="mt-4">
-                    <x-input-label for="version" value="{{ __('Version') }}" class="sr-only" />
+                <div class="mt-4 max-w-sm">
+                    <x-input-label for="version" value="{{ __('Insert Version') }}"/>
 
                     <x-text-input
                         id="version"
                         name="version"
                         type="text"
-                        class="mt-1 block w-1/2 text-sm"
+                        class="mt-1 block w-full"
                         placeholder="{{ __('Version') }}"
                         required
                     />
@@ -115,14 +115,14 @@
                         {{ __("Please insert a new version.") }}
                     </p>
 
-                    <div class="mt-4">
-                        <x-input-label for="version" value="{{ __('Version') }}" class="sr-only" />
+                    <div class="mt-4 max-w-sm">
+                        <x-input-label for="version" value="{{ __('Insert Version') }}"/>
 
                         <x-text-input
                             id="version"
                             name="version"
                             type="text"
-                            class="mt-1 block w-1/2 text-sm"
+                            class="mt-1 block w-full"
                             :value="$version->version"
                             required
                         />

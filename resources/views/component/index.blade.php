@@ -17,7 +17,7 @@
             <x-message/>
 
             <a href="{{ route('component.create') }}" 
-                class="mt-6 inline-flex items-center px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
+                class="mt-4 inline-flex items-center px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
                 Create New Component
             </a>
 

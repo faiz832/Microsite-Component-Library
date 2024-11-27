@@ -17,7 +17,7 @@
             <x-message/>
 
             <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'create-category')" 
-                class="mt-6 inline-flex items-center px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
+                class="mt-4 inline-flex items-center px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
                 Create New category
             </button>
 
@@ -77,8 +77,9 @@
                     {{ __("Please insert a new category.") }}
                 </p>
 
-                <div class="mt-4">
-                    <select name="version_id" class="w-1/2 text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
+                <div class="mt-4 max-w-sm">
+                    <x-input-label for="version_id" value="{{ __('Insert Version') }}"/>
+                    <select name="version_id" class="mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                         @foreach($versions as $version)
                             <option value="{{ $version->id }}">
                                 {{ ucfirst($version->version) }}
@@ -87,14 +88,14 @@
                     </select>
                 </div>
 
-                <div class="mt-4">
-                    <x-input-label for="category" value="{{ __('Category') }}" class="sr-only" />
+                <div class="mt-4 max-w-sm">
+                    <x-input-label for="category" value="{{ __('Insert Category') }}"/>
 
                     <x-text-input
                         id="category"
                         name="category"
                         type="text"
-                        class="mt-1 block w-1/2 text-sm"
+                        class="mt-1 block w-full"
                         placeholder="{{ __('category') }}"
                         required
                     />
@@ -127,8 +128,10 @@
                         {{ __("Please insert a new category.") }}
                     </p>
 
-                    <div class="mt-4">
-                        <select name="version_id" class="w-1/2 text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
+                    <div class="mt-4 max-w-sm">
+                        <x-input-label for="version_id" value="{{ __('Input Version') }}"/>
+
+                        <select name="version_id" class="mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                             @foreach($versions as $version)
                                 <option value="{{ $version->id }}"
                                     {{ $version->id == $category->version_id ? 'selected' : '' }}>
@@ -138,14 +141,14 @@
                         </select>
                     </div>
 
-                    <div class="mt-4">
-                        <x-input-label for="category" value="{{ __('category') }}" class="sr-only" />
+                    <div class="mt-4 max-w-sm">
+                        <x-input-label for="category" value="{{ __('Input Category') }}"/>
 
                         <x-text-input
                             id="category"
                             name="category"
                             type="text"
-                            class="mt-1 block w-1/2 text-sm"
+                            class="mt-1 block w-full"
                             :value="$category->category"
                             required
                         />

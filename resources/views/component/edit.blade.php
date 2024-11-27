@@ -1,4 +1,4 @@
-<title>CreateComponent - Microsite Component Library</title>
+<title>Edit Component - Microsite Component Library</title>
 
 <x-app-layout>
     <div>
@@ -18,15 +18,18 @@
                 <x-message/>
     
                 <div class="overflow-x-auto">
-                    <form method="POST" action="{{ route('component.store') }}" class="space-y-6" style="margin-bottom: 0;">
+                    <form method="POST" action="{{ route('component.update', $components->id) }}" class="space-y-6" style="margin-bottom: 0;">
                         @csrf
+                        @method('PATCH')
+
                         <div class="mt-4">
                             <x-input-label for="version_id" :value="__('Input Version')" />
                             <select id="version_id" name="version_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                                 <option value="" hidden>Select Version</option>
                                 @foreach($versions as $version)
-                                    <option value="{{ $version->id }}">
-                                        {{ ucfirst($version->version) }}
+                                    <option value="{{ $version->id }}"
+                                        {{ $version->id == $components->version_id ? 'selected' : '' }}>
+                                        {{ $version->version }}
                                     </option>
                                 @endforeach
                             </select>
@@ -36,8 +39,9 @@
                             <x-input-label for="category_id" value="{{ __('Input Category') }}"/>
                             <select id="category_id" name="category_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">
-                                        {{ ucfirst($category->category) }}
+                                    <option value="{{ $category->id }}"
+                                        {{ $category->id == $components->category_id ? 'selected' : '' }}>
+                                        {{ $category->category }}
                                     </option>
                                 @endforeach
                             </select>
@@ -51,7 +55,7 @@
                                 name="component"
                                 type="text"
                                 class="mt-1 block w-full"
-                                placeholder="{{ __('component') }}"
+                                value="{{ $components->component }}"
                                 required
                             />
                         </div>
@@ -62,7 +66,7 @@
                             </a>
         
                             <x-confirm-button class="ml-3">
-                                {{ __('Create') }}
+                                {{ __('Update') }}
                             </x-confirm-button>
                         </div>
                     </form>

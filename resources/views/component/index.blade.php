@@ -45,17 +45,15 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">{{ $component->updated_at }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center justify-center space-x-2">
-                                        <div x-data="{ componentId: {{ $component->id }} }" class="flex items-center space-x-2">
-                                            <button type="button" 
-                                                class="px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700"
-                                                x-on:click="$dispatch('open-modal', 'edit-component-' + componentId)">
+                                        <div class="flex items-center space-x-2">
+                                            <a href="{{ route('component.edit', $component->id) }}" 
+                                                class="px-2.5 py-1.5 text-xs text-white rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700">
                                                 Edit
-                                            </button>
-                                            <button type="button" 
-                                                class="px-2.5 py-1.5 text-xs text-white rounded-md bg-red-600 hover:bg-red-700"
-                                                x-on:click="$dispatch('open-modal', 'delete-component-' + componentId)">
+                                            </a>
+                                            <a href="{{ route('component.destroy', $component->id) }}" 
+                                                class="px-2.5 py-1.5 text-xs text-white rounded-md bg-red-600 hover:bg-red-700">
                                                 Delete
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </td>

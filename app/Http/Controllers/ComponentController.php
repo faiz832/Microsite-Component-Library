@@ -30,6 +30,15 @@ class ComponentController extends Controller
         return view('component.create', compact('versions', 'categories'));
     }
 
+
+    public function edit($id)
+    {
+        $components = Component::findOrFail($id);
+        $versions = Version::orderBy('version', 'desc')->get();
+        $categories = Category::where('version_id', $components->version_id)->get();
+        return view('component.edit', compact('components', 'versions', 'categories'));
+    }
+
     public function store(Request $request)
     {
         // Validasi input
@@ -90,7 +99,7 @@ class ComponentController extends Controller
             'component' => $request->component
         ]);
 
-        return back()->with('success', 'Component updated successfully.');
+        return redirect()->route('component.index')->with('success', 'Component updated successfully.');
     }
 
     public function destroy($id)

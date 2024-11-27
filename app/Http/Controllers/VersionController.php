@@ -18,7 +18,7 @@ class VersionController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'version' => ['required', 'string', 'min:2', 'max:4', Rule::unique('versions')->ignore($request->id)],
+            'version' => ['required', 'numeric', Rule::unique('versions')->ignore($request->id)],
         ], [
             'version.unique' => 'A version with that name already exists.',
         ]);
@@ -31,7 +31,7 @@ class VersionController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
-            'version' => ['required', 'string', 'min:2', 'max:4', Rule::unique('versions')->ignore($id)],
+            'version' => ['required', 'numeric', Rule::unique('versions')->ignore($id)],
         ], [
             'version.unique' => 'A version with that name already exists.',
         ]);

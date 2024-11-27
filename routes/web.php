@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\VersionController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('home');
@@ -23,6 +24,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     // Component
 
     // Category
+    Route::resource('/data/category', CategoryController::class);
 
     // Version
     Route::resource('/data/version', VersionController::class);

@@ -110,7 +110,7 @@
         
                     <!-- Role Selection -->
                     <div class="mt-4">
-                        <select name="role" class="w-3/4 text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:bg-gray-800 dark:border-gray-400 focus:border-purple-500 dark:focus:border-purple-500 focus:ring-purple-500">
+                        <select name="role" class="w-1/2 text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:bg-gray-800 dark:border-gray-400 focus:border-purple-500 dark:focus:border-purple-500 focus:ring-purple-500">
                             @foreach($roles as $role)
                                 <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
                                     {{ ucfirst($role->name) }}

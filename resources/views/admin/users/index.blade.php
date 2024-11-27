@@ -1,7 +1,7 @@
 <title>User Management - Microsite Component Library</title>
 
 <x-app-layout>
-    <div class="" x-data="userManagement">
+    <div>
         <div class="p-4 sm:p-8 rounded-md border border-gray-200 dark:border-gray-800">
             <header>
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -120,7 +120,7 @@
         
                     <!-- Role Selection -->
                     <div class="mt-4">
-                        <select name="role" class="text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:border-gray-800 dark:bg-gray-800 focus:border-purple-500">
+                        <select name="role" class="w-2/4 text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:bg-gray-800 dark:border-gray-400 focus:border-purple-500 dark:focus:border-purple-500 focus:ring-purple-500">
                             @foreach($roles as $role)
                                 <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
                                     {{ ucfirst($role->name) }}
@@ -133,9 +133,9 @@
                         <x-secondary-button x-on:click="$dispatch('close')">
                             {{ __('Cancel') }}
                         </x-secondary-button>
-                        <x-primary-button class="ml-3" type="submit">
+                        <x-button class="ml-3 bg-green-600 hover:bg-green-700" type="submit">
                             {{ __('Confirm') }}
-                        </x-primary-button>
+                        </x-button>
                     </div>
                 </form>
             </x-modal>
@@ -161,9 +161,9 @@
                             <x-secondary-button x-on:click="$dispatch('close')">
                                 {{ __('Cancel') }}
                             </x-secondary-button>
-                            <x-primary-button class="ml-3" type="submit">
+                            <x-button class="ml-3 {{ $user->activations->contains($activation->id) ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700' }}" type="submit">
                                 {{ $user->activations->contains($activation->id) ? __('Deactivate') : __('Activate') }}
-                            </x-primary-button>
+                            </x-button>
                         </div>
                     </form>
                 </x-modal>

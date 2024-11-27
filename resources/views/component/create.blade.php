@@ -1,4 +1,4 @@
-<title>CreateComponent - Microsite Component Library</title>
+<title>Create Component - Microsite Component Library</title>
 
 <x-app-layout>
     <div>

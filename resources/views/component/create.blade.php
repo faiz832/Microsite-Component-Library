@@ -17,11 +17,11 @@
                 <!-- Success or Error Message -->
                 <x-message/>
     
-                <div class="overflow-x-auto">
+                <div class="">
                     <form method="POST" action="{{ route('component.store') }}" class="space-y-6" style="margin-bottom: 0;">
                         @csrf
                         <div class="mt-4">
-                            <x-input-label for="version_id" :value="__('Input Version')" />
+                            <x-input-label for="version_id" :value="__('Choose Version')" />
                             <select id="version_id" name="version_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                                 <option value="" hidden>Select Version</option>
                                 @foreach($versions as $version)
@@ -33,7 +33,7 @@
                         </div>
         
                         <div class="mt-4">
-                            <x-input-label for="category_id" value="{{ __('Input Category') }}"/>
+                            <x-input-label for="category_id" value="{{ __('Choose Category') }}"/>
                             <select id="category_id" name="category_id" class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">
@@ -44,7 +44,7 @@
                         </div>
         
                         <div class="mt-4">
-                            <x-input-label for="component" value="{{ __('Input Component') }}"/>
+                            <x-input-label for="component" value="{{ __('Insert Component') }}"/>
         
                             <x-text-input
                                 id="component"

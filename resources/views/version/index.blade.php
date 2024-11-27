@@ -71,14 +71,18 @@
                     {{ __('Create New Version') }}
                 </h2>
 
-                <div class="mt-6">
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __("Please insert a new version.") }}
+                </p>
+
+                <div class="mt-4">
                     <x-input-label for="version" value="{{ __('Version') }}" class="sr-only" />
 
                     <x-text-input
                         id="version"
                         name="version"
                         type="text"
-                        class="mt-1 block w-1/2"
+                        class="mt-1 block w-1/2 text-sm"
                         placeholder="{{ __('Version') }}"
                         required
                     />
@@ -107,14 +111,18 @@
                         {{ __('Edit Version') }}
                     </h2>
 
-                    <div class="mt-6">
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __("Please insert a new version.") }}
+                    </p>
+
+                    <div class="mt-4">
                         <x-input-label for="version" value="{{ __('Version') }}" class="sr-only" />
 
                         <x-text-input
                             id="version"
                             name="version"
                             type="text"
-                            class="mt-1 block w-1/2"
+                            class="mt-1 block w-1/2 text-sm"
                             :value="$version->version"
                             required
                         />

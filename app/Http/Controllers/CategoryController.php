@@ -11,10 +11,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::with(['version' => function($query) {
-            $query->orderBy('version', 'desc');
-        }])->get();
-        
+        $categories = Category::with('version')
+            ->join('versions', 'categories.version_id', '=', 'versions.id')
+            ->orderBy('versions.version', 'desc')
+            ->select('categories.*')
+            ->get();
+
         $versions = Version::orderBy('version', 'desc')->get();
 
         return view('category.index', compact('categories', 'versions'));

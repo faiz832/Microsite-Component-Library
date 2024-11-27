@@ -73,7 +73,11 @@
                     {{ __('Create New category') }}
                 </h2>
 
-                <div class="mt-6">
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __("Please insert a new category.") }}
+                </p>
+
+                <div class="mt-4">
                     <select name="version_id" class="w-1/2 text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
                         @foreach($versions as $version)
                             <option value="{{ $version->id }}">
@@ -83,7 +87,7 @@
                     </select>
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-4">
                     <x-input-label for="category" value="{{ __('Category') }}" class="sr-only" />
 
                     <x-text-input
@@ -119,14 +123,29 @@
                         {{ __('Edit category') }}
                     </h2>
 
-                    <div class="mt-6">
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __("Please insert a new category.") }}
+                    </p>
+
+                    <div class="mt-4">
+                        <select name="version_id" class="w-1/2 text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
+                            @foreach($versions as $version)
+                                <option value="{{ $version->id }}"
+                                    {{ $version->id == $category->version_id ? 'selected' : '' }}>
+                                    {{ $version->version }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mt-4">
                         <x-input-label for="category" value="{{ __('category') }}" class="sr-only" />
 
                         <x-text-input
                             id="category"
                             name="category"
                             type="text"
-                            class="mt-1 block w-1/2"
+                            class="mt-1 block w-1/2 text-sm"
                             :value="$category->category"
                             required
                         />

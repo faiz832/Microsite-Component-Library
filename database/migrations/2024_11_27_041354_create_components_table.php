@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('components', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('version_id')->index()->constrained();
+            $table->foreignId('category_id')->index()->constrained();
+            $table->string('component');
             $table->timestamps();
         });
     }

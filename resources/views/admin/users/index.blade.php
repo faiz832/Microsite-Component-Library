@@ -1,4 +1,4 @@
-<title>User Management - Microsite Component Library</title>
+<title>User - Microsite Component Library</title>
 
 <x-app-layout>
     <div>
@@ -34,7 +34,7 @@
                 <table class="min-w-full">
                     <thead class="border-b border-gray-200 dark:border-gray-800">
                         <tr>
-                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-900 dark:text-white tracking-wider">ID</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-900 dark:text-white tracking-wider">No</th>
                             <th class="px-6 py-3 text-left text-sm font-medium text-gray-900 dark:text-white tracking-wider">Name</th>
                             <th class="px-6 py-3 text-left text-sm font-medium text-gray-900 dark:text-white tracking-wider">Email</th>
                             <th class="px-6 py-3 text-center text-sm font-medium text-gray-900 dark:text-white tracking-wider">Role</th>
@@ -45,8 +45,8 @@
                     <tbody class="divide-y divide-gray-200 dark:divide-gray-900">
                         @foreach($users as $user)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-500">{{ $user->id }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900 dark:text-white">{{ $user->name }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-500">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium capitalize text-gray-900 dark:text-white">{{ $user->name }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-left text-sm text-gray-500">{{ $user->email }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     @foreach($roles as $role)
@@ -70,9 +70,7 @@
                                             <button type="button" 
                                                 class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs text-white font-medium rounded-md bg-gray-900 hover:bg-gray-700 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none"
                                                 x-on:click="$dispatch('open-modal', 'confirm-role-update-' + userId)">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                                                </svg>
+                                                Edit
                                             </button>
                                         </div>
                                         @foreach($activations as $activation)
@@ -83,15 +81,7 @@
                                                         : 'bg-green-600 hover:bg-green-700' }} 
                                                     focus:outline-none flex items-center"
                                                     x-on:click="$dispatch('open-modal', 'confirm-activation-toggle-' + userId + '-' + activationId)">
-                                                    @if($user->activations->contains($activation->id))
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                    </svg>
-                                                    @else
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                    </svg>
-                                                    @endif
+                                                    {{ $user->activations->contains($activation->id) ? 'Deactivate' : 'Activate' }}
                                                 </button>
                                             </div>
                                         @endforeach
@@ -120,7 +110,7 @@
         
                     <!-- Role Selection -->
                     <div class="mt-4">
-                        <select name="role" class="w-2/4 text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:bg-gray-800 dark:border-gray-400 focus:border-purple-500 dark:focus:border-purple-500 focus:ring-purple-500">
+                        <select name="role" class="w-3/4 text-sm text-gray-900 dark:text-gray-400 rounded-lg border-gray-200 dark:bg-gray-800 dark:border-gray-400 focus:border-purple-500 dark:focus:border-purple-500 focus:ring-purple-500">
                             @foreach($roles as $role)
                                 <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
                                     {{ ucfirst($role->name) }}
@@ -133,9 +123,9 @@
                         <x-secondary-button x-on:click="$dispatch('close')">
                             {{ __('Cancel') }}
                         </x-secondary-button>
-                        <x-button class="ml-3 bg-green-600 hover:bg-green-700" type="submit">
+                        <x-confirm-button class="ml-3" type="submit">
                             {{ __('Confirm') }}
-                        </x-button>
+                        </x-confirm-button>
                     </div>
                 </form>
             </x-modal>

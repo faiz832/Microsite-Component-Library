@@ -66,7 +66,7 @@
         <button 
             @click="theme = 'light'; open = false" 
             class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-            :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
+            :class="theme === 'light' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-400'">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                     d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z">
@@ -77,7 +77,7 @@
         <button 
             @click="theme = 'dark'; open = false" 
             class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-            :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
+            :class="theme === 'dark' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-400'">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24">
                 <path 
                     stroke="currentColor" 
@@ -98,7 +98,7 @@
         <button 
             @click="theme = 'system'; open = false" 
             class="flex w-full items-center gap-2 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-            :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-200'">
+            :class="theme === 'system' ? 'text-primary dark:text-primary' : 'text-gray-700 dark:text-gray-400'">
             <svg class="h-5 w-5" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"></circle>
                 <path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"></path>

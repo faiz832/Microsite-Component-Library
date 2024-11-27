@@ -32,11 +32,11 @@
             </div>
         </div>
 
-        <!-- Components Data Section -->
+        <!-- Data Section -->
         <div>
             <div class="mb-2 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <h2 class="px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
-                    Components Data
+                    Data
                 </h2>
             </div>
             <div class="space-y-1">
@@ -52,7 +52,8 @@
                     </svg>
                     Category
                 </a>
-                <a href="#" class="flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+                <a href="{{route('version.index')}}" class="{{Route::is('version.index') ? 'font-semibold dark:text-white' : ''}} relative flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+                    <div class="{{Route::is('version.index') ? 'block' : 'hidden'}} absolute inset-y-0 -left-2 w-1 h-6 my-auto bg-purple-600 rounded-t-lg rounded-b-lg"></div>
                     <svg class="mr-3 h-5 w-5 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>

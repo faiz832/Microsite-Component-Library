@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\VersionController;
 
 Route::get('/', function () {
     return view('home');
@@ -17,9 +18,21 @@ Route::get('/home/dashboard', function () {
 })->middleware(['auth', 'verified', 'active'])->name('dashboard');
 
 Route::middleware(['auth', 'active'])->group(function () {
+    // Dashboard
+
+    // Component
+
+    // Category
+
+    // Version
+    Route::resource('/data/version', VersionController::class);
+    
+    // Profile
     Route::get('/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/account/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/account/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Setting
     Route::get('/account/settings', [ProfileController::class, 'settings'])->name('settings.edit');
 });
 

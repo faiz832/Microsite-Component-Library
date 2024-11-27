@@ -105,7 +105,7 @@
     <div class="mx-auto p-4 items-center sm:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
 
         <!-- Hamburger Menu -->
-        <div class="{{Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') || Route::is('settings.edit') ? 'flex' : 'hidden'}}">
+        <div class="{{Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') || Route::is('settings.edit') || Route::is('version.index') ? 'flex' : 'hidden'}}">
             <x-sidebar-dashboard-mobile/>
         </div>
         

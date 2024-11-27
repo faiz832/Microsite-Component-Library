@@ -80,6 +80,7 @@
                 <div class="mt-4 max-w-sm">
                     <x-input-label for="version_id" value="{{ __('Choose Version') }}"/>
                     <select name="version_id" class="mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">
+                        <option value="" hidden>Select Version</option>
                         @foreach($versions as $version)
                             <option value="{{ $version->id }}">
                                 {{ ucfirst($version->version) }}

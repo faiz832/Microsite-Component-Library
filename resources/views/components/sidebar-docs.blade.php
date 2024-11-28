@@ -2,11 +2,11 @@
     <nav class="lg:text-sm lg:leading-6 relative pb-20">
         <!-- Search -->
         <div class="sticky top-0 z-50">
-            <div class="h-8 bg-white dark:bg-gray-900"></div>
+            <div class="h-8 bg-white dark:bg-bgDark"></div>
             <div class="relative pointer-events-auto">
                 <x-sidebar-search/>
             </div>
-            <div class="h-8 bg-gradient-to-b from-white dark:from-gray-900"></div>
+            <div class="h-8 bg-gradient-to-b from-white dark:from-bgDark"></div>
         </div>
         
         <div>

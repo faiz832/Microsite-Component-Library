@@ -1,18 +1,43 @@
-<aside class="hidden lg:flex flex-col w-64">
-    <nav class="flex-1 py-8 space-y-4">
-        <!-- Home Section -->
-        <div>
-            <!-- Search -->
-            <div class="mb-4">
-                <x-sidebar-search />
+<aside class="w-64">
+    <nav class="lg:text-sm lg:leading-6 relative pb-20">
+        <!-- Search -->
+        <div class="sticky top-0 z-50">
+            <div class="h-8 bg-white dark:bg-gray-900"></div>
+            <div class="relative pointer-events-auto">
+                <x-sidebar-search/>
             </div>
+            <div class="h-8 bg-gradient-to-b from-white dark:from-gray-900"></div>
+        </div>
+        
+        <div>
 
-            <div class="mb-2 pt-4 border-t border-gray-200 dark:border-gray-800">
+            <div class="mb-2">
                 <h2 class="px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
                     Home
                 </h2>
             </div>
             <div class="space-y-1">
+                <a href="{{route('dashboard')}}" class="{{Route::is('dashboard') ? 'font-semibold dark:text-white' : ''}} relative flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+                    <div class="{{Route::is('dashboard') ? 'block' : 'hidden'}} absolute inset-y-0 -left-2 w-1 h-6 my-auto bg-purple-600 rounded-t-lg rounded-b-lg"></div>
+                    <svg class="mr-3 h-5 w-5 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="{{route('dashboard')}}" class="{{Route::is('dashboard') ? 'font-semibold dark:text-white' : ''}} relative flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+                    <div class="{{Route::is('dashboard') ? 'block' : 'hidden'}} absolute inset-y-0 -left-2 w-1 h-6 my-auto bg-purple-600 rounded-t-lg rounded-b-lg"></div>
+                    <svg class="mr-3 h-5 w-5 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="{{route('dashboard')}}" class="{{Route::is('dashboard') ? 'font-semibold dark:text-white' : ''}} relative flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+                    <div class="{{Route::is('dashboard') ? 'block' : 'hidden'}} absolute inset-y-0 -left-2 w-1 h-6 my-auto bg-purple-600 rounded-t-lg rounded-b-lg"></div>
+                    <svg class="mr-3 h-5 w-5 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    Dashboard
+                </a>
                 <a href="{{route('dashboard')}}" class="{{Route::is('dashboard') ? 'font-semibold dark:text-white' : ''}} relative flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
                     <div class="{{Route::is('dashboard') ? 'block' : 'hidden'}} absolute inset-y-0 -left-2 w-1 h-6 my-auto bg-purple-600 rounded-t-lg rounded-b-lg"></div>
                     <svg class="mr-3 h-5 w-5 text-gray-700 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,7 +59,7 @@
 
         <!-- Data Section -->
         <div>
-            <div class="mb-2 pt-4 border-t border-gray-200 dark:border-gray-800">
+            <div class="mb-2 pt-4">
                 <h2 class="px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
                     Data
                 </h2>
@@ -67,7 +92,7 @@
 
         <!-- Account Section -->
         <div>
-            <div class="mb-2 pt-4 border-t border-gray-200 dark:border-gray-800">
+            <div class="mb-2 pt-4">
                 <h2 class="px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
                     Account
                 </h2>
@@ -92,7 +117,7 @@
         </div>
 
         <!-- Logout Section -->
-        <div class="pt-4 border-t border-gray-200 dark:border-gray-800">
+        <div class="pt-4">
             <form method="POST" action="{{ route('logout') }}" role="none" style="margin-bottom: 0">
                 @csrf
                 <button type="submit" class="w-full flex items-center px-2 py-2 text-sm rounded-md text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">

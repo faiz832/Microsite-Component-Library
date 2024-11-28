@@ -1,14 +1,14 @@
 <nav x-data="{ open: false }" class="sticky top-0 z-40 w-full backdrop-blur flex-none bg-transparent border-b border-gray-200 dark:border-gray-800">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center h-16 sm:border-0 border-gray-200 dark:border-gray-800 {{Route::is('home') ? 'border-0' : 'border-b'}}">
+        <div class="flex items-center h-16 lg:border-0 border-gray-200 dark:border-gray-800 {{Route::is('home') ? 'border-0' : 'border-b'}}">
             <div class="flex gap-4 items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
                         <x-application-text-logo class="{{Route::is('docs') ? 'hidden' : 'block'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
-                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden sm:block' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
-                        <x-application-logo class="{{Route::is('docs') ? 'block sm:hidden' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden md:block' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-logo class="{{Route::is('docs') ? 'block md:hidden' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
                     </a>
                 </div>
 
@@ -102,14 +102,15 @@
     </div>
 
     <!-- Mobile menu button -->
-    <div class="mx-auto p-4 items-center sm:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
+    <div class="mx-auto p-4 sm:px-6 items-center lg:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
 
-        <!-- Hamburger Menu -->
+        <!-- Dashboard Sidebar Menu -->
         <div class="{{Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') || Route::is('settings.edit') || Route::is('version.index') || Route::is('category.index') || Route::is('component.*') ? 'flex' : 'hidden'}}">
             <x-sidebar-dashboard-mobile/>
         </div>
-        
-        <div class="{{Route::is('docs') ? 'flex' : 'hidden'}}">
+
+        <!-- Docs Sidebar Menu -->
+        <div class="w-6 h-6 {{Route::is('docs') ? 'flex' : 'hidden'}}">
             <x-sidebar-docs-mobile/>
         </div>
 

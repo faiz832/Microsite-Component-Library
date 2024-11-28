@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-40 w-full backdrop-blur flex-none bg-transparent border-b border-gray-200 dark:border-gray-800">
+<nav x-data="{ open: false }" class="sticky top-0 z-40 w-full flex-none border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-bgDark">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center h-16 lg:border-0 border-gray-200 dark:border-gray-800 {{Route::is('home') ? 'border-0' : 'border-b'}}">

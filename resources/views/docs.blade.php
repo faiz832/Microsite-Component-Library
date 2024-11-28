@@ -32,6 +32,7 @@
     </head>
     <body class="font-sans antialiased h-full">
         <div class="min-h-screen bg-white dark:bg-bgDark">
+            <!-- Navbar -->
             <x-navbar/>
     
             <!-- Page Content -->
@@ -54,13 +55,28 @@
                                     <header id="header" class="mb-10 md:flex md:items-start"><div class="flex-auto max-w-4xl"><p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">Installation</p><h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Get started with Tailwind CSS</h1><p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file.</p><p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible, and reliable — with zero-runtime.</p></div></header>
                                     <header id="header" class="mb-10 md:flex md:items-start"><div class="flex-auto max-w-4xl"><p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">Installation</p><h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">Get started with Tailwind CSS</h1><p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file.</p><p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible, and reliable — with zero-runtime.</p></div></header>
                                 </div>
+
+                                <!-- Footer -->
+                                <footer class="pb-8 border-t border-gray-200 dark:border-gray-800">
+                                    <div class="h-14 sm:h-12 flex flex-col-reverse sm:flex-row gap-2 sm:justify-between justify-center items-center">
+                                        <div class="text-xs text-gray-900 dark:text-gray-200">
+                                            © 2024 Detikcom Frontend Designer Team
+                                        </div>
+                                        <div class="flex gap-4">
+                                            <a href="#" class="text-xs text-gray-700 dark:text-gray-200 hover:underline">
+                                                Privacy Policy
+                                            </a>
+                                            <a href="#" class="text-xs text-gray-700 dark:text-gray-200 hover:underline">
+                                                Terms of Service
+                                            </a>
+                                        </div>
+                                    </div>     
+                                </footer>
                             </main>
                         </div>
                     </div>
                 </div>
             </div>
-    
-            <x-footer/>
         </div>
     </body>
 </html>

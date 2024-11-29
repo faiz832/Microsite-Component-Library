@@ -224,7 +224,7 @@
                                 x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
                                 x-transition:leave="ease-in duration-200" x-transition:leave-start="translate-x-0"
                                 x-transition:leave-end="-translate-x-full"
-                                class="h-screen w-max transform divide-y divide-gray-100 overflow-hidden bg-white dark:bg-bgDark shadow-2xl transition-all">
+                                class="h-screen w-max transform divide-y divide-gray-100 overflow-scroll bg-white dark:bg-bgDark shadow-2xl transition-all">
 
                                 <aside class="flex flex-col w-56 px-4 py-6">
                                     <nav class="flex-1 space-y-4">
@@ -310,7 +310,7 @@
                                     <div class="h-8 bg-gradient-to-b from-white dark:from-bgDark"></div>
                                 </div>
 
-                                <div class="space-y-6">
+                                <div class="px-2 space-y-6">
                                     <!-- Navigation Links -->
                                     <div class="space-y-2">
                                         <ul class="space-y-1">

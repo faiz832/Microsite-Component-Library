@@ -38,14 +38,23 @@
         <x-navbar />
 
         <div class="min-h-[calc(100vh-114px)]">
-            <div class="flex gap-12 px-4 sm:px-6 md:px-8">
-                <!-- Sidebar -->
-                <x-sidebar />
+            <div class="overflow-hidden">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Sidebar -->
+                    <div
+                        class="hidden lg:block fixed z-40 inset-0 top-[4.05rem] left-0 right-auto w-80 pb-10 pl-8 pr-6 overflow-y-auto">
+                        <x-sidebar />
+                    </div>
 
-                <!-- Content -->
-                <main class="w-full overflow-auto py-6 sm:py-8">
-                    {{ $slot }}
-                </main>
+                    <!-- Content -->
+                    <div class="min-h-[calc(100vh-114px)]">
+                        <main class="lg:pl-80">
+                            <div class="w-full py-6 sm:py-8">
+                                {{ $slot }}
+                            </div>
+                        </main>
+                    </div>
+                </div>
             </div>
         </div>
 

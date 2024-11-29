@@ -44,14 +44,10 @@
                 <div class="relative max-w-5xl mx-auto py-14 sm:pt-24 lg:pt-32">
                     <h1
                         class="text-gray-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">
-                        Rapidly build responsive microsites effortlessly with Microsite Component Library.</h1>
-                    <p class="mt-6 text-lg text-gray-600 text-center max-w-3xl mx-auto dark:text-gray-400">A
-                        utility-first CSS framework packed with classes like <code
-                            class="font-mono font-medium text-purple-600 dark:text-purple-500">flex</code>, <code
-                            class="font-mono font-medium text-purple-600 dark:text-purple-500">pt-4</code>, <code
-                            class="font-mono font-medium text-purple-600 dark:text-purple-500">text-center</code> and
-                        <code class="font-mono font-medium text-purple-600 dark:text-purple-500">rotate-90</code> that
-                        can be composed to build any design, directly in your markup.
+                        Build responsive microsites easily and quickly with the Microsite Component Library.</h1>
+                    <p class="mt-6 text-lg text-gray-600 text-center max-w-3xl mx-auto dark:text-gray-400">
+                        Cut your time with a set of pre-designed and customizable components, allowing developers to
+                        easily create stunning and responsive microsites in no time.
                     </p>
                     <div class="mt-6 sm:mt-10 flex justify-center text-sm">
                         <a href="{{ route('docs.show') }}"

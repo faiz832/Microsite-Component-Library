@@ -235,10 +235,10 @@
                                                     <ul class="space-y-1">
                                                         <li>
                                                             <a href="{{ route('docs.show', ['version' => $selectedVersion->version]) }}"
-                                                                class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                                class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group transition {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}">
                                                                 <div
                                                                     class="p-1 border border-gray-200 dark:border-gray-800 rounded-md">
-                                                                    <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500 dark:text-purple-500' : '' }}"
+                                                                    <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 transition {{ !$selectedComponent ? 'text-purple-500 dark:text-purple-500' : '' }}"
                                                                         fill="none" stroke="currentColor"
                                                                         viewBox="0 0 24 24">
                                                                         <path stroke-linecap="round"
@@ -264,13 +264,13 @@
                                                                 <li class="relative pl-2 group">
                                                                     <!-- Absolute line -->
                                                                     <div
-                                                                        class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300 
+                                                                        class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300
                                                                                 {{ $selectedComponent && $selectedComponent->id === $component->id ? 'bg-purple-600' : 'bg-transparent group-hover:bg-gray-600' }}">
                                                                     </div>
                                                                     <!-- Link -->
                                                                     <a href="{{ route('docs.show', ['version' => $selectedVersion->version, 'category' => $category->category, 'component' => $component->component]) }}"
-                                                                        class="flex capitalize text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white
-                                                                                {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                                        class="flex capitalize text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition
+                                                                                {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}">
                                                                         {{ $component->component }}
                                                                     </a>
                                                                 </li>
@@ -316,10 +316,10 @@
                                         <ul class="space-y-1">
                                             <li>
                                                 <a href="{{ route('docs.show', ['version' => $selectedVersion->version]) }}"
-                                                    class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                    class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group transition {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}">
                                                     <div
                                                         class="p-1 border border-gray-200 dark:border-gray-800 rounded-md">
-                                                        <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500 dark:text-purple-500' : '' }}"
+                                                        <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 transition {{ !$selectedComponent ? 'text-purple-500 dark:text-purple-500' : '' }}"
                                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2"
@@ -342,13 +342,13 @@
                                                     <li class="relative pl-2 group">
                                                         <!-- Absolute line -->
                                                         <div
-                                                            class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300 
+                                                            class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300
                                                                     {{ $selectedComponent && $selectedComponent->id === $component->id ? 'bg-purple-600' : 'bg-transparent group-hover:bg-gray-600' }}">
                                                         </div>
                                                         <!-- Link -->
                                                         <a href="{{ route('docs.show', ['version' => $selectedVersion->version, 'category' => $category->category, 'component' => $component->component]) }}"
-                                                            class="flex capitalize text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white
-                                                                    {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                            class="flex capitalize text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition
+                                                                    {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}">
                                                             {{ $component->component }}
                                                         </a>
                                                     </li>

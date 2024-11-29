@@ -1,30 +1,94 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-40 w-full flex-none border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-bgDark">
+<nav id="navbar" x-data="{ dropdownOpen: false }" :class="{ 'z-50': dropdownOpen, 'z-20': !dropdownOpen }"
+    class="sticky top-0 w-full flex-none border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-bgDark">
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center h-16 lg:border-0 border-gray-200 dark:border-gray-800 {{Route::is('home') ? 'border-0' : 'border-b'}}">
+        <div
+            class="flex items-center h-16 lg:border-0 border-gray-200 dark:border-gray-800 {{ Route::is('home') ? 'border-0' : 'border-b' }}">
             <div class="flex gap-4 items-center">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden' : 'block'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
-                        <x-application-text-logo class="{{Route::is('docs') ? 'hidden md:block' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
-                        <x-application-logo class="{{Route::is('docs') ? 'block md:hidden' : 'hidden'}} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-text-logo
+                            class="{{ Route::is('docs') ? 'hidden' : 'block' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-text-logo
+                            class="{{ Route::is('docs') ? 'hidden md:block' : 'hidden' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                        <x-application-logo
+                            class="{{ Route::is('docs') ? 'block md:hidden' : 'hidden' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
                     </a>
                 </div>
 
-                <x-version-dropdown/>
+                @props(['versions' => [['value' => 'v24', 'label' => 'v24'], ['value' => 'v23', 'label' => 'v23']]])
+
+                <div x-data="{
+                    open: false,
+                    selectedVersion: '{{ $versions[0]['value'] }}',
+                    versions: {{ json_encode($versions) }},
+                    toggle() {
+                        this.open = !this.open;
+                        this.$dispatch('dropdown-toggled', this.open);
+                    },
+                    close() {
+                        this.open = false;
+                        this.$dispatch('dropdown-toggled', false);
+                    }
+                }" @dropdown-toggled.window="dropdownOpen = $event.detail"
+                    class="relative text-left {{ Route::is('docs') ? 'inline-block' : 'hidden' }}">
+                    <div>
+                        <button id="version-button" @click="toggle()" type="button"
+                            class="text-xs leading-5 font-semibold text-gray-500 dark:text-gray-300 bg-gray-400/10 dark:bg-gray-900 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-gray-400/20 dark:hover:bg-gray-700"
+                            id="version-selector" aria-haspopup="true" x-bind:aria-expanded="open">
+                            <span x-text="selectedVersion"></span>
+                            <svg class="-mr-1 ml-2 mt-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div x-show="open" @click.away="close()" style="display: none;"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="origin-top-left absolute left-0 mt-2 w-24 rounded-md bg-white p-1 text-sm shadow-lg ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-0"
+                        role="menu" aria-orientation="vertical" aria-labelledby="version-selector">
+                        <div role="none">
+                            <template x-for="version in versions" :key="version.value">
+                                <button @click="selectedVersion = version.value; close()"
+                                    class="flex justify-between w-full p-1 text-sm leading-5 font-semibold rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                    role="menuitem">
+                                    <span x-text="version.label"
+                                        :class="selectedVersion === version.value ? 'text-primary dark:text-primary' :
+                                            'text-gray-700 dark:text-gray-200'"></span>
+                                    <svg x-show="selectedVersion === version.value" class="h-5 w-5 text-primary"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="flex h-max ml-auto">
                 <!-- Navigation Links -->
                 <div class="hidden sm:flex items-center">
-                    <a href="{{ route('docs') }}" class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
+                    <a href="{{ route('docs') }}"
+                        class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
                 </div>
-                
+
                 <div class="flex items-center border-l border-gray-200 ml-6 pl-4 gap-2 dark:border-gray-800">
                     <!-- Theme button and dropdown -->
                     <div class="relative">
-                        <x-theme-toggle/>
+                        <x-theme-toggle />
                     </div>
 
                     <!-- Login button -->
@@ -37,7 +101,7 @@
                                         <div class="avatar">
                                             @php
                                                 $avatarUrl = asset('assets/images/default-avatar.png'); // Default avatar URL
-    
+
                                                 if (Auth::user()->avatar) {
                                                     if (Str::startsWith(Auth::user()->avatar, 'https://')) {
                                                         $avatarUrl = Auth::user()->avatar;
@@ -46,7 +110,7 @@
                                                     }
                                                 }
                                             @endphp
-    
+
                                             <img id="avatar-preview" class="h-[32px] w-[32px] object-cover rounded-full"
                                                 src="{{ $avatarUrl }}" alt="User Avatar" />
                                         </div>
@@ -58,8 +122,8 @@
                                         x-transition:leave-start="transform opacity-100 scale-100"
                                         x-transition:leave-end="transform opacity-0 scale-95"
                                         class="absolute top-9 right-0 mt-2 w-48 rounded-md bg-white p-1 text-sm shadow-lg ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-0"
-                                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
-                                        style="display: none;">
+                                        role="menu" aria-orientation="vertical" aria-labelledby="menu-button"
+                                        tabindex="-1" style="display: none;">
                                         <div role="none">
                                             <a href="{{ route('dashboard') }}"
                                                 class="block px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
@@ -70,7 +134,8 @@
                                             <a href="{{ route('settings.edit') }}"
                                                 class="block px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
                                                 role="menuitem">Settings</a>
-                                            <form method="POST" action="{{ route('logout') }}" role="none" style="margin-bottom: 0">
+                                            <form method="POST" action="{{ route('logout') }}" role="none"
+                                                style="margin-bottom: 0">
                                                 @csrf
                                                 <button type="submit"
                                                     class="block w-full text-left px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30"
@@ -97,21 +162,22 @@
             <x-navbar-search />
 
             <!-- Three Dots -->
-            <x-navbar-menu-mobile/>
+            <x-navbar-menu-mobile />
         </div>
     </div>
 
     <!-- Mobile menu button -->
-    <div class="mx-auto p-4 sm:px-6 items-center lg:hidden {{Route::is('home') ? 'hidden' : 'flex'}}">
+    <div class="mx-auto p-4 sm:px-6 items-center lg:hidden {{ Route::is('home') ? 'hidden' : 'flex' }}">
 
         <!-- Dashboard Sidebar Menu -->
-        <div class="{{Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') || Route::is('settings.edit') || Route::is('version.index') || Route::is('category.index') || Route::is('component.*') ? 'flex' : 'hidden'}}">
-            <x-sidebar-dashboard-mobile/>
+        <div
+            class="{{ Route::is('dashboard') || Route::is('admin.users.index') || Route::is('profile.edit') || Route::is('settings.edit') || Route::is('version.index') || Route::is('category.index') || Route::is('component.*') ? 'flex' : 'hidden' }}">
+            <x-sidebar-dashboard-mobile />
         </div>
 
         <!-- Docs Sidebar Menu -->
-        <div class="w-6 h-6 {{Route::is('docs') ? 'flex' : 'hidden'}}">
-            <x-sidebar-docs-mobile/>
+        <div class="w-6 h-6 {{ Route::is('docs') ? 'flex' : 'hidden' }}">
+            <x-sidebar-docs-mobile />
         </div>
 
         <!-- Breadcrumb -->

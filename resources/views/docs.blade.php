@@ -65,7 +65,7 @@
                         <div class="relative inline-block text-left">
                             <div>
                                 <button @click="dropdownOpen = !dropdownOpen" type="button"
-                                    class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                                    class="text-xs leading-5 font-semibold text-gray-500 dark:text-gray-300 bg-gray-400/10 dark:bg-gray-900 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-gray-400/20 dark:hover:bg-gray-700"
                                     id="options-menu" aria-haspopup="true" x-bind:aria-expanded="dropdownOpen">
                                     v<span x-text="selectedVersion"></span>
                                     <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -78,19 +78,14 @@
                             </div>
 
                             <div x-show="dropdownOpen" @click.away="dropdownOpen = false" style="display: none;"
-                                x-transition:enter="transition ease-out duration-100"
-                                x-transition:enter-start="transform opacity-0 scale-95"
-                                x-transition:enter-end="transform opacity-100 scale-100"
-                                x-transition:leave="transition ease-in duration-75"
-                                x-transition:leave-start="transform opacity-100 scale-100"
-                                x-transition:leave-end="transform opacity-0 scale-95"
                                 class="origin-top-left absolute left-0 mt-2 w-24 rounded-md bg-white p-1 text-sm shadow-lg ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-0"
                                 role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <div class="py-1" role="none">
+                                <div role="none">
                                     <template x-for="version in versions" :key="version">
                                         <a @click="updateVersion(version)"
-                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            role="menuitem" x-text="'v' + version"></a>
+                                            class="flex justify-between w-full p-1 text-xs leading-5 font-semibold rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600/30"
+                                            role="menuitem" x-text="'v' + version">
+                                        </a>
                                     </template>
                                 </div>
                             </div>
@@ -220,27 +215,45 @@
                                     <div class="h-8 bg-gradient-to-b from-white dark:from-bgDark"></div>
                                 </div>
 
-                                <div class="space-y-4">
+                                <div class="space-y-6">
                                     <!-- Navigation Links -->
-                                    <div class="pb-8 space-y-2">
-                                        <h3 class="font-medium text-gray-500">Documentation</h3>
+                                    <div class="space-y-2">
                                         <ul class="space-y-1">
                                             <li>
                                                 <a href="{{ route('docs.show', ['version' => $selectedVersion->version]) }}"
-                                                    class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white {{ !$selectedComponent ? 'font-bold' : '' }}">
-                                                    Overview
+                                                    class="inline-flex items-center gap-3 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                    <div
+                                                        class="p-1 border border-gray-200 dark:border-gray-800 rounded-md">
+                                                        <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500' : '' }}"
+                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                    Documentation
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                     @foreach ($categories as $category)
-                                        <div class="pb-8 space-y-2">
-                                            <h3 class="font-medium text-gray-500">{{ $category->category }}</h3>
-                                            <ul class="space-y-1">
+                                        <div class="pb-4">
+                                            <h3 class="mb-4 capitalize font-semibold text-gray-800 dark:text-gray-200">
+                                                {{ $category->category }}
+                                            </h3>
+                                            <ul class="ml-2 border-l border-gray-200 dark:border-gray-800 space-y-2">
                                                 @foreach ($category->components as $component)
-                                                    <li>
+                                                    <li class="relative pl-2 group">
+                                                        <!-- Absolute line -->
+                                                        <div
+                                                            class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300 
+                                                                    {{ $selectedComponent && $selectedComponent->id === $component->id ? 'bg-purple-600' : 'bg-transparent group-hover:bg-gray-600' }}">
+                                                        </div>
+                                                        <!-- Link -->
                                                         <a href="{{ route('docs.show', ['version' => $selectedVersion->version, 'category' => $category->category, 'component' => $component->component]) }}"
-                                                            class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-bold' : '' }}">
+                                                            class="flex capitalize text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white
+                                                                    {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
                                                             {{ $component->component }}
                                                         </a>
                                                     </li>
@@ -255,7 +268,7 @@
 
                     <!-- Content -->
                     <div class="min-h-[calc(100vh-114px)]">
-                        <main class="lg:pl-80">
+                        <main class="min-h-[calc(100vh-70px)] lg:pl-80 flex flex-col justify-between">
                             <div class="w-full py-6 sm:py-8">
                                 <main class="lg:col-span-9">
                                     @if ($selectedComponent)
@@ -276,7 +289,7 @@
                             </div>
 
                             <!-- Footer -->
-                            <footer class="pb-8 border-t border-gray-200 dark:border-gray-800">
+                            <footer class="border-t border-gray-200 dark:border-gray-800">
                                 <div
                                     class="h-14 sm:h-12 flex flex-col-reverse sm:flex-row gap-2 sm:justify-between justify-center items-center">
                                     <div class="text-xs text-gray-900 dark:text-gray-200">

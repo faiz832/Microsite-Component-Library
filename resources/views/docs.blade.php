@@ -221,7 +221,7 @@
                                         <ul class="space-y-1">
                                             <li>
                                                 <a href="{{ route('docs.show', ['version' => $selectedVersion->version]) }}"
-                                                    class="inline-flex items-center gap-3 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                    class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
                                                     <div
                                                         class="p-1 border border-gray-200 dark:border-gray-800 rounded-md">
                                                         <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500' : '' }}"
@@ -272,14 +272,20 @@
                             <div class="w-full py-6 sm:py-8">
                                 <main class="lg:col-span-9">
                                     @if ($selectedComponent)
-                                        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">
-                                            {{ $selectedComponent->category->category }} -
+                                        <h1 class="mb-2 text-sm leading-6 font-semibold text-purple-500">
+                                            {{ $selectedComponent->category->category }}
+                                        </h1>
+                                        <h1
+                                            class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
                                             {{ $selectedComponent->component }}
                                         </h1>
                                         <p class="mt-4 text-gray-600 dark:text-gray-300">Component content goes here.
                                         </p>
                                     @else
-                                        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Documentation
+                                        <h1 class="mb-2 text-sm leading-6 font-semibold text-purple-500">Overview</h1>
+                                        <h1
+                                            class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
+                                            Documentation
                                         </h1>
                                         <p class="mt-4 text-gray-600 dark:text-gray-300">Welcome to the documentation
                                             for version

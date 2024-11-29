@@ -224,7 +224,7 @@
                                                     class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
                                                     <div
                                                         class="p-1 border border-gray-200 dark:border-gray-800 rounded-md">
-                                                        <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500' : '' }}"
+                                                        <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500 dark:text-purple-500' : '' }}"
                                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 stroke-width="2"

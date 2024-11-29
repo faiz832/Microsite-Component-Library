@@ -35,9 +35,17 @@
 </head>
 
 <body class="font-sans antialiased h-full">
-    <div class="min-h-screen bg-white dark:bg-bgDark">
+    <div x-data="{
+        dropdownOpen: false,
+        selectedVersion: '{{ $selectedVersion->version }}',
+        versions: {{ $versions->pluck('version') }},
+        updateVersion(version) {
+            this.selectedVersion = version;
+            window.location.href = '/docs/' + version;
+        }
+    }" class="min-h-screen bg-white dark:bg-bgDark">
         <!-- Navbar -->
-        <nav id="navbar" x-data="{ dropdownOpen: false }" :class="{ 'z-50': dropdownOpen, 'z-20': !dropdownOpen }"
+        <nav id="navbar" :class="{ 'z-50': dropdownOpen, 'z-20': !dropdownOpen }"
             class="sticky top-0 w-full flex-none border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-bgDark">
             <!-- Primary Navigation Menu -->
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,34 +56,19 @@
                         <div class="shrink-0 flex items-center">
                             <a href="{{ route('home') }}">
                                 <x-application-text-logo
-                                    class="{{ Route::is('docs') ? 'hidden md:block' : 'hidden' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                                    class="{{ Route::is('docs.*') ? 'hidden md:block' : 'hidden' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
                                 <x-application-logo
-                                    class="{{ Route::is('docs') ? 'block md:hidden' : 'hidden' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
+                                    class="{{ Route::is('docs.*') ? 'block md:hidden' : 'hidden' }} h-6 w-auto fill-current text-primaryDark dark:text-white" />
                             </a>
                         </div>
 
-                        @props(['versions' => [['value' => 'v24', 'label' => 'v24'], ['value' => 'v23', 'label' => 'v23']]])
-
-                        <div x-data="{
-                            open: false,
-                            selectedVersion: '{{ $versions[0]['value'] }}',
-                            versions: {{ json_encode($versions) }},
-                            toggle() {
-                                this.open = !this.open;
-                                this.$dispatch('dropdown-toggled', this.open);
-                            },
-                            close() {
-                                this.open = false;
-                                this.$dispatch('dropdown-toggled', false);
-                            }
-                        }" @dropdown-toggled.window="dropdownOpen = $event.detail"
-                            class="relative text-left {{ Route::is('docs') ? 'inline-block' : 'hidden' }}">
+                        <div class="relative inline-block text-left">
                             <div>
-                                <button id="version-button" @click="toggle()" type="button"
-                                    class="text-xs leading-5 font-semibold text-gray-500 dark:text-gray-300 bg-gray-400/10 dark:bg-gray-900 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-gray-400/20 dark:hover:bg-gray-700"
-                                    id="version-selector" aria-haspopup="true" x-bind:aria-expanded="open">
-                                    <span x-text="selectedVersion"></span>
-                                    <svg class="-mr-1 ml-2 mt-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                <button @click="dropdownOpen = !dropdownOpen" type="button"
+                                    class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+                                    id="options-menu" aria-haspopup="true" x-bind:aria-expanded="dropdownOpen">
+                                    v<span x-text="selectedVersion"></span>
+                                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd"
                                             d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -84,7 +77,7 @@
                                 </button>
                             </div>
 
-                            <div x-show="open" @click.away="close()" style="display: none;"
+                            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" style="display: none;"
                                 x-transition:enter="transition ease-out duration-100"
                                 x-transition:enter-start="transform opacity-0 scale-95"
                                 x-transition:enter-end="transform opacity-100 scale-100"
@@ -92,23 +85,12 @@
                                 x-transition:leave-start="transform opacity-100 scale-100"
                                 x-transition:leave-end="transform opacity-0 scale-95"
                                 class="origin-top-left absolute left-0 mt-2 w-24 rounded-md bg-white p-1 text-sm shadow-lg ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-0"
-                                role="menu" aria-orientation="vertical" aria-labelledby="version-selector">
-                                <div role="none">
-                                    <template x-for="version in versions" :key="version.value">
-                                        <button @click="selectedVersion = version.value; close()"
-                                            class="flex justify-between w-full p-1 text-sm leading-5 font-semibold rounded-md text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                            role="menuitem">
-                                            <span x-text="version.label"
-                                                :class="selectedVersion === version.value ? 'text-primary dark:text-primary' :
-                                                    'text-gray-700 dark:text-gray-200'"></span>
-                                            <svg x-show="selectedVersion === version.value" class="h-5 w-5 text-primary"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                fill="currentColor" aria-hidden="true">
-                                                <path fill-rule="evenodd"
-                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
+                                role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <div class="py-1" role="none">
+                                    <template x-for="version in versions" :key="version">
+                                        <a @click="updateVersion(version)"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                            role="menuitem" x-text="'v' + version"></a>
                                     </template>
                                 </div>
                             </div>
@@ -118,7 +100,7 @@
                     <div class="flex h-max ml-auto">
                         <!-- Navigation Links -->
                         <div class="hidden sm:flex items-center">
-                            <a href="{{ route('docs') }}"
+                            <a href="{{ route('docs.show') }}"
                                 class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
                         </div>
 
@@ -211,7 +193,7 @@
             <div class="mx-auto p-4 sm:px-6 items-center lg:hidden {{ Route::is('home') ? 'hidden' : 'flex' }}">
 
                 <!-- Docs Sidebar Menu -->
-                <div class="w-6 h-6 {{ Route::is('docs') ? 'flex' : 'hidden' }}">
+                <div class="w-6 h-6 {{ Route::is('docs.*') ? 'flex' : 'hidden' }}">
                     <x-sidebar-docs-mobile />
                 </div>
 
@@ -227,109 +209,70 @@
                     <!-- Sidebar -->
                     <div
                         class="hidden lg:block fixed z-40 inset-0 top-[4.05rem] left-0 right-auto w-80 pb-10 pl-8 pr-6 overflow-y-auto">
-                        <x-sidebar-docs />
+                        <aside class="w-64">
+                            <nav class="lg:text-sm lg:leading-6 relative pb-20">
+                                <!-- Search -->
+                                <div class="sticky top-0 z-50">
+                                    <div class="h-8 bg-white dark:bg-bgDark"></div>
+                                    <div class="relative pointer-events-auto">
+                                        <x-sidebar-search />
+                                    </div>
+                                    <div class="h-8 bg-gradient-to-b from-white dark:from-bgDark"></div>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <!-- Navigation Links -->
+                                    <div class="pb-8 space-y-2">
+                                        <h3 class="font-medium text-gray-500">Documentation</h3>
+                                        <ul class="space-y-1">
+                                            <li>
+                                                <a href="{{ route('docs.show', ['version' => $selectedVersion->version]) }}"
+                                                    class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white {{ !$selectedComponent ? 'font-bold' : '' }}">
+                                                    Overview
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    @foreach ($categories as $category)
+                                        <div class="pb-8 space-y-2">
+                                            <h3 class="font-medium text-gray-500">{{ $category->category }}</h3>
+                                            <ul class="space-y-1">
+                                                @foreach ($category->components as $component)
+                                                    <li>
+                                                        <a href="{{ route('docs.show', ['version' => $selectedVersion->version, 'category' => $category->category, 'component' => $component->component]) }}"
+                                                            class="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-bold' : '' }}">
+                                                            {{ $component->component }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </nav>
+                        </aside>
                     </div>
 
                     <!-- Content -->
                     <div class="min-h-[calc(100vh-114px)]">
                         <main class="lg:pl-80">
                             <div class="w-full py-6 sm:py-8">
-                                <header id="header" class="mb-10 md:flex md:items-start">
-                                    <div class="flex-auto max-w-4xl">
-                                        <p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-                                            Installation</p>
-                                        <h1
-                                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            Get started with Tailwind CSS</h1>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works
-                                            by
-                                            scanning all of your HTML files, JavaScript components, and any other
-                                            templates for class names, generating the corresponding styles and then
-                                            writing them to a static CSS file.</p>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible,
-                                            and reliable — with zero-runtime.</p>
-                                    </div>
-                                </header>
-                                <header id="header" class="mb-10 md:flex md:items-start">
-                                    <div class="flex-auto max-w-4xl">
-                                        <p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-                                            Installation</p>
-                                        <h1
-                                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            Get started with Tailwind CSS</h1>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works
-                                            by
-                                            scanning all of your HTML files, JavaScript components, and any other
-                                            templates for class names, generating the corresponding styles and then
-                                            writing them to a static CSS file.</p>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible,
-                                            and reliable — with zero-runtime.</p>
-                                    </div>
-                                </header>
-                                <header id="header" class="mb-10 md:flex md:items-start">
-                                    <div class="flex-auto max-w-4xl">
-                                        <p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-                                            Installation</p>
-                                        <h1
-                                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            Get started with Tailwind CSS</h1>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works
-                                            by
-                                            scanning all of your HTML files, JavaScript components, and any other
-                                            templates for class names, generating the corresponding styles and then
-                                            writing them to a static CSS file.</p>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible,
-                                            and reliable — with zero-runtime.</p>
-                                    </div>
-                                </header>
-                                <header id="header" class="mb-10 md:flex md:items-start">
-                                    <div class="flex-auto max-w-4xl">
-                                        <p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-                                            Installation</p>
-                                        <h1
-                                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            Get started with Tailwind CSS</h1>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works
-                                            by
-                                            scanning all of your HTML files, JavaScript components, and any other
-                                            templates for class names, generating the corresponding styles and then
-                                            writing them to a static CSS file.</p>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible,
-                                            and reliable — with zero-runtime.</p>
-                                    </div>
-                                </header>
-                                <header id="header" class="mb-10 md:flex md:items-start">
-                                    <div class="flex-auto max-w-4xl">
-                                        <p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-                                            Installation</p>
-                                        <h1
-                                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            Get started with Tailwind CSS</h1>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works
-                                            by
-                                            scanning all of your HTML files, JavaScript components, and any other
-                                            templates for class names, generating the corresponding styles and then
-                                            writing them to a static CSS file.</p>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible,
-                                            and reliable — with zero-runtime.</p>
-                                    </div>
-                                </header>
-                                <header id="header" class="mb-10 md:flex md:items-start">
-                                    <div class="flex-auto max-w-4xl">
-                                        <p class="mb-4 text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400">
-                                            Installation</p>
-                                        <h1
-                                            class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            Get started with Tailwind CSS</h1>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">Tailwind CSS works
-                                            by
-                                            scanning all of your HTML files, JavaScript components, and any other
-                                            templates for class names, generating the corresponding styles and then
-                                            writing them to a static CSS file.</p>
-                                        <p class="mt-4 text-lg text-slate-700 dark:text-slate-400">It's fast, flexible,
-                                            and reliable — with zero-runtime.</p>
-                                    </div>
-                                </header>
+                                <main class="lg:col-span-9">
+                                    @if ($selectedComponent)
+                                        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">
+                                            {{ $selectedComponent->category->category }} -
+                                            {{ $selectedComponent->component }}
+                                        </h1>
+                                        <p class="mt-4 text-gray-600 dark:text-gray-300">Component content goes here.
+                                        </p>
+                                    @else
+                                        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white">Documentation
+                                        </h1>
+                                        <p class="mt-4 text-gray-600 dark:text-gray-300">Welcome to the documentation
+                                            for version
+                                            {{ $selectedVersion->version }}.</p>
+                                    @endif
+                                </main>
                             </div>
 
                             <!-- Footer -->

@@ -27,10 +27,13 @@ class Breadcrumb extends Component
         $allSegments = array_filter(explode('/', $path));
         $lastTwoSegments = array_slice($allSegments, -2);
 
+        // Decode URL-encoded segments (like: delete %20)
+        $decodedSegments = array_map('urldecode', $lastTwoSegments);
+
         // Map the segments to their friendly names
         $this->segments = array_map(function ($segment) {
             return $this->urlMapping[$segment] ?? ucfirst($segment);
-        }, $lastTwoSegments);
+        }, $decodedSegments);
     }
 
     public function render(): View

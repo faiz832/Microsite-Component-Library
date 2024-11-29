@@ -16,7 +16,7 @@
             <div class="flex h-max ml-auto">
                 <!-- Navigation Links -->
                 <div class="hidden sm:flex items-center">
-                    <a href="{{ route('docs') }}"
+                    <a href="{{ route('docs.show') }}"
                         class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
                 </div>
 

@@ -14,7 +14,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/docs', [DocsController::class, 'index'])->name('docs');
+// Route::get('/docs', [DocsController::class, 'index'])->name('docs');
+Route::get('/docs/{version?}/{category?}/{component?}', [DocsController::class, 'show'])->name('docs.show');
 Route::get('/get-categories/{versionId}', [ComponentController::class, 'getCategories']);
 
 // Auth Routes

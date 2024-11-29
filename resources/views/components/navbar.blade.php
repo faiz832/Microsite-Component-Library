@@ -20,7 +20,7 @@
                         class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
                 </div>
 
-                <div class="flex items-center border-l border-gray-200 ml-6 pl-4 gap-2 dark:border-gray-800">
+                <div class="flex items-center border-l border-gray-200 ml-6 pl-4 gap-4 dark:border-gray-800">
                     <!-- Theme button and dropdown -->
                     <div class="relative">
                         <x-theme-toggle />

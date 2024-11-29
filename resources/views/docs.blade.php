@@ -99,7 +99,7 @@
                                 class="text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary transition">Docs</a>
                         </div>
 
-                        <div class="flex items-center border-l border-gray-200 ml-6 pl-4 gap-2 dark:border-gray-800">
+                        <div class="flex items-center border-l border-gray-200 ml-6 pl-4 gap-4 dark:border-gray-800">
                             <!-- Theme button and dropdown -->
                             <div class="relative">
                                 <x-theme-toggle />
@@ -187,9 +187,104 @@
             <!-- Mobile menu button -->
             <div class="mx-auto p-4 sm:px-6 items-center lg:hidden {{ Route::is('home') ? 'hidden' : 'flex' }}">
 
-                <!-- Docs Sidebar Menu -->
+                <!-- Docs Sidebar Button  -->
                 <div class="w-6 h-6 {{ Route::is('docs.*') ? 'flex' : 'hidden' }}">
-                    <x-sidebar-docs-mobile />
+                    <div x-data="{ open: false }">
+                        <button
+                            @click="open = !open; document.documentElement.classList.toggle('overflow-hidden', open)"
+                            class="inline-flex items-center justify-center rounded text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition">
+                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                                <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        <div x-show="open" x-transition:enter="ease-out duration-300"
+                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                            x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                            class="absolute top-0 right-0 h-screen w-full z-50 backdrop-blur-sm" role="dialog"
+                            aria-modal="true" style="display: none;">
+                            <div x-show="open" x-transition:enter="ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="ease-in duration-200" x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                class="absolute top-0 left-0 h-screen w-full bg-gray-500/70 transition-opacity dark:bg-gray-900/70"
+                                @click="open = false; document.documentElement.classList.remove('overflow-hidden')"
+                                aria-hidden="true">
+                            </div>
+
+                            <div x-show="open"
+                                @click.away="open = false; document.documentElement.classList.remove('overflow-hidden')"
+                                x-transition:enter="ease-out duration-300"
+                                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                                x-transition:leave="ease-in duration-200" x-transition:leave-start="translate-x-0"
+                                x-transition:leave-end="-translate-x-full"
+                                class="h-screen w-max transform divide-y divide-gray-100 overflow-hidden bg-white dark:bg-bgDark shadow-2xl transition-all">
+
+                                <aside class="flex flex-col w-56 px-4 py-6">
+                                    <nav class="flex-1 space-y-4">
+                                        <div class="lg:text-sm lg:leading-6 relative pb-20">
+                                            <div class="space-y-6">
+                                                <!-- Navigation Links -->
+                                                <div class="space-y-2">
+                                                    <ul class="space-y-1">
+                                                        <li>
+                                                            <a href="{{ route('docs.show', ['version' => $selectedVersion->version]) }}"
+                                                                class="flex items-center gap-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white group {{ !$selectedComponent ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                                <div
+                                                                    class="p-1 border border-gray-200 dark:border-gray-800 rounded-md">
+                                                                    <svg class="h-5 w-5 text-gray-700 dark:text-gray-400 group-hover:text-purple-600 {{ !$selectedComponent ? 'text-purple-500 dark:text-purple-500' : '' }}"
+                                                                        fill="none" stroke="currentColor"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round" stroke-width="2"
+                                                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                                Documentation
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                @foreach ($categories as $category)
+                                                    <div class="pb-4">
+                                                        <h3
+                                                            class="mb-4 capitalize font-semibold text-gray-800 dark:text-gray-200">
+                                                            {{ $category->category }}
+                                                        </h3>
+                                                        <ul
+                                                            class="ml-2 border-l border-gray-200 dark:border-gray-800 space-y-2">
+                                                            @foreach ($category->components as $component)
+                                                                <li class="relative pl-2 group">
+                                                                    <!-- Absolute line -->
+                                                                    <div
+                                                                        class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300 
+                                                                                {{ $selectedComponent && $selectedComponent->id === $component->id ? 'bg-purple-600' : 'bg-transparent group-hover:bg-gray-600' }}">
+                                                                    </div>
+                                                                    <!-- Link -->
+                                                                    <a href="{{ route('docs.show', ['version' => $selectedVersion->version, 'category' => $category->category, 'component' => $component->component]) }}"
+                                                                        class="flex capitalize text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white
+                                                                                {{ $selectedComponent && $selectedComponent->id === $component->id ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 dark:hover:text-purple-600' : '' }}">
+                                                                        {{ $component->component }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Breadcrumb -->

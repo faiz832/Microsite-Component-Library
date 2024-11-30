@@ -51,8 +51,8 @@
             </div>
 
             <!-- Loading indicator -->
-            <div x-show="isSearching" class="text-center py-2">
-                <svg class="animate-spin h-5 w-5 mx-auto text-gray-500" xmlns="http://www.w3.org/2000/svg"
+            <div x-show="isSearching" class="h-40 flex items-center justify-center">
+                <svg class="animate-spin h-8 w-8 mx-auto text-gray-500" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                         stroke-width="4"></circle>
@@ -64,27 +64,24 @@
 
             <!-- No results message -->
             <div x-show="!isSearching && query.length >= 2 && Object.keys(searchResults).length === 0"
-                class="text-center py-2 text-gray-500">
+                class="h-40 flex items-center justify-center text-gray-500">
                 No results found
             </div>
 
             <ul x-show="!isSearching && Object.keys(searchResults).length > 0"
-                class="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800 dark:text-gray-200">
+                class="max-h-72 scroll-py-2 overflow-y-auto mx-6 pb-6 text-sm text-gray-800 dark:text-gray-200">
                 <template x-for="(versionGroup, version) in searchResults" :key="version">
-                    <li class="px-4 py-2">
-                        <h3 class="font-semibold" x-text="'Version ' + version"></h3>
+                    <li class="">
+                        <h3 class="sticky top-0 z-10 pt-6 pb-2 text-base font-semibold bg-white dark:bg-gray-800"
+                            x-text="'Version ' + version"></h3>
                         <template x-for="(categoryGroup, category) in versionGroup" :key="category">
-                            <div class="ml-4">
+                            <div class="">
                                 <h4 class="font-medium" x-text="category"></h4>
-                                <ul class="ml-4">
+                                <ul class="space-y-2">
                                     <template x-for="component in categoryGroup" :key="component.id">
                                         <li>
-                                            <a :href="route('docs.show', {
-                                                version: version,
-                                                category: category,
-                                                component: component.component
-                                            })"
-                                                class="block py-1 text-blue-600 hover:underline dark:text-blue-400"
+                                            <a :href="'/docs/' + version + '/' + category + '/' + component.component"
+                                                class="block px-4 py-3 bg-gray-50 dark:bg-gray-700 hover:text-white hover:bg-purple-500 hover:dark:bg-purple-500 rounded-md transition"
                                                 x-text="component.component"></a>
                                         </li>
                                     </template>

@@ -8,13 +8,14 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocsController;
+use App\Http\Controllers\SearchController;
 
 // Guest Routes
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Route::get('/docs', [DocsController::class, 'index'])->name('docs');
+Route::post('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/docs/{version?}/{category?}/{component?}', [DocsController::class, 'show'])->name('docs.show');
 Route::get('/get-categories/{versionId}', [ComponentController::class, 'getCategories']);
 
@@ -31,7 +32,7 @@ Route::middleware(['auth', 'active'])->group(function () {
 
     // Version
     Route::resource('/data/version', VersionController::class);
-    
+
     // Profile
     Route::get('/account/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/account/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -48,4 +49,4 @@ Route::middleware(['auth', 'active', 'role:admin'])->group(function () {
     Route::patch('/home/users/{user}/activation', [UserManagementController::class, 'toggleActivation'])->name('admin.users.toggle.activation');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

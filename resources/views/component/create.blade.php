@@ -57,7 +57,7 @@
                             <x-input-label for="note" value="{{ __('Insert Note') }}" />
 
                             <textarea id="note" name="note" type="text" class="mt-1 block w-full"
-                                placeholder="{{ __('Insert some general notes') }}" required></textarea>
+                                placeholder="{{ __('Insert some general notes') }}"></textarea>
                         </div>
 
                         <div class="mt-4">
@@ -78,7 +78,7 @@
                             <x-input-label for="js" value="{{ __('Insert JavaScript Code') }}" />
 
                             <textarea id="js" name="js" type="text" class="mt-1 block w-full"
-                                placeholder="{{ __('Insert JavaScript Code here refer to the documentation') }}" required></textarea>
+                                placeholder="{{ __('Insert JavaScript Code here refer to the documentation') }}"></textarea>
                         </div>
 
                         <div class="mt-6 flex">

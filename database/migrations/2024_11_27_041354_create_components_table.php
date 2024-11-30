@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('version_id')->index()->constrained();
             $table->foreignId('category_id')->index()->constrained();
             $table->string('component');
-            $table->text('note')->nullable(); // Tambahkan note yang bisa optional
-            $table->text('html')->nullable(); // Tambahkan kolom HTML
-            $table->text('scss')->nullable(); // Tambahkan kolom SCSS/CSS
-            $table->text('js')->nullable(); // Tambahkan kolom JS yang optional
+            $table->text('note')->nullable();
+            $table->text('html')->nullable();
+            $table->text('scss')->nullable();
+            $table->text('js')->nullable();
             $table->timestamps();
         });
     }

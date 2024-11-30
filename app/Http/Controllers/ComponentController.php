@@ -16,7 +16,7 @@ class ComponentController extends Controller
             ->orderBy('versions.version', 'desc')
             ->select('components.*')
             ->get();
-        
+
         $versions = Version::orderBy('version', 'desc')->get();
         $categories = collect(); // Empty collection
 
@@ -44,7 +44,11 @@ class ComponentController extends Controller
         $request->validate([
             'version_id' => 'required|exists:versions,id',
             'category_id' => 'required|exists:categories,id',
-            'component' => 'required|string|max:255'
+            'component' => 'required|string|max:255',
+            'note' => 'nullable|string',
+            'html' => 'required|string',
+            'scss' => 'required|string',
+            'js' => 'nullable|string'
         ]);
 
         $existingComponent = Component::where([
@@ -73,7 +77,11 @@ class ComponentController extends Controller
         $request->validate([
             'version_id' => 'required|exists:versions,id',
             'category_id' => 'required|exists:categories,id',
-            'component' => 'required|string|max:255'
+            'component' => 'required|string|max:255',
+            'note' => 'nullable|string',
+            'html' => 'required|string',
+            'scss' => 'required|string',
+            'js' => 'nullable|string'
         ]);
 
         $existingComponent = Component::where([

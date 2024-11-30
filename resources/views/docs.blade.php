@@ -376,6 +376,40 @@
                                         </h1>
                                         <p class="mt-4 text-gray-600 dark:text-gray-300">Component content goes here.
                                         </p>
+
+                                        @if ($selectedComponent->note)
+                                            <div class="mb-4 bg-blue-100 border-l-4 border-blue-500 p-4">
+                                                <p class="text-blue-700">{{ $selectedComponent->note }}</p>
+                                            </div>
+                                        @endif
+
+                                        <div class="grid md:grid-cols-2 gap-6">
+                                            <div>
+                                                <h3 class="text-xl font-medium mb-2">HTML</h3>
+                                                <pre class="h-40 bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
+                                            </div>
+
+                                            <div>
+                                                <h3 class="text-xl font-medium mb-2">CSS/SCSS</h3>
+                                                <pre class="h-40 bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
+                                            </div>
+                                        </div>
+
+                                        @if ($selectedComponent->js)
+                                            <div class="mt-6">
+                                                <h3 class="text-xl font-medium mb-2">JavaScript</h3>
+                                                <pre class="h-40 bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
+                                            </div>
+                                        @endif
+
+                                        <div class="mt-6">
+                                            <h3 class="text-xl font-medium mb-2">Preview</h3>
+                                            <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+                                                <iframe src="{{ route('preview.show', $selectedComponent) }}"
+                                                    class="w-full min-h-[300px] bg-white rounded-lg shadow"
+                                                    frameborder="0" loading="lazy"></iframe>
+                                            </div>
+                                        </div>
                                     @else
                                         <h1 class="mb-2 text-sm leading-6 font-semibold text-purple-500">Overview</h1>
                                         <h1

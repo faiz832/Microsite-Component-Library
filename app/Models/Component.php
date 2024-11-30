@@ -13,6 +13,10 @@ class Component extends Model
         'version_id',
         'category_id',
         'component',
+        'note',
+        'html',
+        'scss',
+        'js'
     ];
 
     // Relations
@@ -20,7 +24,7 @@ class Component extends Model
     {
         return $this->belongsTo(Version::class);
     }
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class);

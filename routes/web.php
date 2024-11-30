@@ -9,6 +9,7 @@ use App\Http\Controllers\ComponentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocsController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ComponentPreviewController;
 
 // Guest Routes
 Route::get('/', function () {
@@ -18,6 +19,7 @@ Route::get('/', function () {
 Route::post('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/docs/{version?}/{category?}/{component?}', [DocsController::class, 'show'])->name('docs.show');
 Route::get('/get-categories/{versionId}', [ComponentController::class, 'getCategories']);
+Route::get('/preview/{component}', [ComponentPreviewController::class, 'show'])->name('preview.show');
 
 // Auth Routes
 Route::middleware(['auth', 'active'])->group(function () {

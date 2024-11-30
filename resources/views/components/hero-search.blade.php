@@ -69,9 +69,9 @@
             </div>
 
             <ul x-show="!isSearching && Object.keys(searchResults).length > 0"
-                class="max-h-96 scroll-py-2 overflow-y-auto mx-6 pb-6 text-sm text-gray-800 dark:text-gray-200">
+                class="max-h-96 scroll-py-2 overflow-y-auto pb-6 text-sm text-gray-800 dark:text-gray-200">
                 <template x-for="(versionGroup, version) in searchResults" :key="version">
-                    <li class="">
+                    <li class="mx-6">
                         <h3 class="sticky top-0 z-10 pt-6 pb-2 text-base font-semibold bg-white dark:bg-gray-800"
                             x-text="'Version ' + version"></h3>
                         <template x-for="(categoryGroup, category) in versionGroup" :key="category">

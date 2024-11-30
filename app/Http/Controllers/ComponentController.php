@@ -41,7 +41,7 @@ class ComponentController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'version_id' => 'required|exists:versions,id',
             'category_id' => 'required|exists:categories,id',
             'component' => 'required|string|max:255',
@@ -61,11 +61,7 @@ class ComponentController extends Controller
             return back()->with('error', 'Component with same version, category, and name already exists.');
         }
 
-        Component::create([
-            'version_id' => $request->version_id,
-            'category_id' => $request->category_id,
-            'component' => $request->component
-        ]);
+        Component::create($data);
 
         return redirect()->route('component.index')->with('success', 'Component created successfully.');
     }
@@ -74,7 +70,7 @@ class ComponentController extends Controller
     {
         $component = Component::findOrFail($id);
 
-        $request->validate([
+        $data = $request->validate([
             'version_id' => 'required|exists:versions,id',
             'category_id' => 'required|exists:categories,id',
             'component' => 'required|string|max:255',
@@ -94,11 +90,7 @@ class ComponentController extends Controller
             return back()->with('error', 'Component with same version, category, and name already exists.');
         }
 
-        $component->update([
-            'version_id' => $request->version_id,
-            'category_id' => $request->category_id,
-            'component' => $request->component
-        ]);
+        $component->update($data);
 
         return redirect()->route('component.index')->with('success', 'Component updated successfully.');
     }

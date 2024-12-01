@@ -38,11 +38,7 @@
     <div x-data="{
         dropdownOpen: false,
         selectedVersion: '{{ $selectedVersion->version }}',
-        versions: {{ $versions->pluck('version') }},
-        updateVersion(version) {
-            this.selectedVersion = version;
-            window.location.href = '/docs/' + version;
-        }
+        versions: {{ $versions->pluck('version') }}
     }" class="min-h-screen bg-white dark:bg-bgDark">
         <!-- Navbar -->
         <nav id="navbar" :class="{ 'z-50': dropdownOpen, 'z-20': !dropdownOpen }"
@@ -81,12 +77,20 @@
                                 class="origin-top-left absolute left-0 mt-2 w-24 rounded-md bg-white p-1 text-sm shadow-lg ring-1 ring-gray-900/10 dark:bg-gray-900 dark:ring-0"
                                 role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <div role="none">
-                                    <template x-for="version in versions" :key="version">
-                                        <a @click="updateVersion(version)"
-                                            class="flex justify-between w-full p-1 text-xs leading-5 font-semibold rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600/30"
-                                            role="menuitem" x-text="'v' + version">
+                                    @foreach ($versions as $version)
+                                        <a href="{{ route('docs.show', ['version' => $version->version]) }}"
+                                            class="flex justify-between w-full p-1 text-xs leading-5 font-semibold rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600/30 {{ $version->version === $selectedVersion->version ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}"
+                                            role="menuitem">
+                                            <span>v{{ $version->version }}</span>
+                                            <svg class="h-5 w-5 text-purple-500 {{ $version->version === $selectedVersion->version ? 'block' : 'hidden' }}"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
                                         </a>
-                                    </template>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

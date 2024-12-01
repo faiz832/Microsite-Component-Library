@@ -385,7 +385,7 @@
                                                 </div>
 
                                                 @if ($selectedComponent->note)
-                                                    <p class="mt-8 text-gray-600 dark:text-gray-400">
+                                                    <p class="mt-4 text-gray-600 dark:text-gray-400">
                                                         {{ $selectedComponent->note }}
                                                     </p>
                                                 @endif
@@ -412,7 +412,8 @@
                                                             class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                             aria-label="Anchor">#</a>
                                                     </h2>
-                                                    <pre class="max-h-[500px] bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
+                                                    <pre
+                                                        class="max-h-[500px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
                                                 </div>
 
                                                 <div id="css" class="pt-8">
@@ -423,7 +424,8 @@
                                                             class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                             aria-label="Anchor">#</a>
                                                     </h2>
-                                                    <pre class="max-h-[500px] bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
+                                                    <pre
+                                                        class="max-h-[500px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
                                                 </div>
 
                                                 @if ($selectedComponent->js)
@@ -435,7 +437,8 @@
                                                                 class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                                 aria-label="Anchor">#</a>
                                                         </h2>
-                                                        <pre class="max-h-[500px] bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
+                                                        <pre
+                                                            class="max-h-[500px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
                                                     </div>
                                                 @endif
                                             </div>

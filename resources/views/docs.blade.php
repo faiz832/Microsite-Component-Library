@@ -61,7 +61,7 @@
                         <div class="relative inline-block text-left">
                             <div>
                                 <button @click="dropdownOpen = !dropdownOpen" type="button"
-                                    class="text-xs leading-5 font-semibold text-gray-500 dark:text-gray-300 bg-gray-400/10 dark:bg-gray-900 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-gray-400/20 dark:hover:bg-gray-700"
+                                    class="text-xs leading-5 font-semibold text-gray-500 dark:text-gray-400 bg-gray-400/10 dark:bg-gray-800 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-gray-400/20 dark:hover:bg-gray-700 transition"
                                     id="options-menu" aria-haspopup="true" x-bind:aria-expanded="dropdownOpen">
                                     v<span x-text="selectedVersion"></span>
                                     <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@
                                 <div role="none">
                                     @foreach ($versions as $version)
                                         <a href="{{ route('docs.show', ['version' => $version->version]) }}"
-                                            class="flex justify-between w-full p-1 text-xs leading-5 font-semibold rounded-md text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600/30 {{ $version->version === $selectedVersion->version ? 'font-semibold text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}"
+                                            class="flex justify-between w-full p-1 text-xs leading-5 font-semibold rounded-md text-gray-500 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600/30 {{ $version->version === $selectedVersion->version ? 'text-purple-500 dark:text-purple-500 hover:text-purple-600 hover:dark:text-purple-600' : '' }}"
                                             role="menuitem">
                                             <span>v{{ $version->version }}</span>
                                             <svg class="h-5 w-5 text-purple-500 {{ $version->version === $selectedVersion->version ? 'block' : 'hidden' }}"

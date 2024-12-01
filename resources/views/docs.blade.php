@@ -230,7 +230,7 @@
                                 x-transition:leave-end="-translate-x-full"
                                 class="h-screen w-max transform divide-y divide-gray-100 overflow-scroll bg-white dark:bg-bgDark shadow-2xl transition-all">
 
-                                <aside class="flex flex-col w-56 px-4 py-6">
+                                <aside class="flex flex-col w-80 px-4 py-6">
                                     <nav class="flex-1 space-y-4">
                                         <div class="lg:text-sm lg:leading-6 relative pb-20">
                                             <div class="space-y-6">

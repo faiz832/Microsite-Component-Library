@@ -370,16 +370,19 @@
                                         <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
                                             <!-- Content -->
                                             <div class="col-span-4">
-                                                <div id="overview">
+                                                <h1 class="-mb-6 text-sm leading-6 font-semibold text-purple-500">
+                                                    {{ $selectedComponent->category->category }}
 
-                                                    <h1 class="mb-2 text-sm leading-6 font-semibold text-purple-500">
-                                                        {{ $selectedComponent->category->category }}
-                                                    </h1>
-                                                </div>
-                                                <h1
-                                                    class="inline-block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight dark:text-gray-200">
-                                                    {{ $selectedComponent->component }}
                                                 </h1>
+                                                <div id="overview" class="pt-8">
+                                                    <h2
+                                                        class="flex group text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight dark:text-gray-200">
+                                                        {{ $selectedComponent->component }}
+                                                        <a href="#overview"
+                                                            class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
+                                                            aria-label="Anchor">#</a>
+                                                    </h2>
+                                                </div>
 
                                                 @if ($selectedComponent->note)
                                                     <p class="mt-8 text-gray-600 dark:text-gray-400">

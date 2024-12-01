@@ -302,8 +302,8 @@
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
                     <!-- Sidebar -->
                     <div
-                        class="hidden lg:block fixed z-40 inset-0 top-[4.05rem] left-0 right-auto w-80 pb-10 pl-8 pr-6 overflow-y-auto">
-                        <aside class="w-64">
+                        class="hidden lg:block fixed z-40 inset-0 top-[4.05rem] left-0 right-auto w-64 pb-10 pl-8 pr-6 overflow-y-auto">
+                        <aside class="w-56">
                             <nav class="lg:text-sm lg:leading-6 relative pb-20">
                                 <!-- Search -->
                                 <div class="sticky top-0 z-50">
@@ -367,13 +367,13 @@
 
                     <!-- Main Content -->
                     <div class="min-h-[calc(100vh-114px)]">
-                        <div class="min-h-[calc(100vh-70px)] lg:pl-72 flex flex-col justify-between">
+                        <div class="min-h-[calc(100vh-70px)] lg:pl-64 flex flex-col justify-between">
                             <div class="w-full py-6 sm:py-8">
                                 <main class="">
                                     @if ($selectedComponent)
-                                        <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
+                                        <div class="grid grid-cols-1 xl:grid-cols-8">
                                             <!-- Content -->
-                                            <div class="col-span-4">
+                                            <div class="col-span-7">
                                                 <h1 class="-mb-6 text-sm leading-6 font-semibold text-purple-500">
                                                     {{ $selectedComponent->category->category }}
 
@@ -449,7 +449,7 @@
 
                                             <!-- On this page -->
                                             <div
-                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-56 pt-8 pr-8 overflow-y-auto hidden xl:block">
+                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-[150px] pt-8 pr-8 overflow-y-auto hidden xl:block">
                                                 <h1
                                                     class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-gray-200">
                                                     On

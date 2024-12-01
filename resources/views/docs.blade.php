@@ -32,6 +32,20 @@
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
+
+    <style>
+        .tooltip::before {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 8px;
+            height: 8px;
+            background-color: #1f2937;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body class="font-sans antialiased h-full">
@@ -376,7 +390,6 @@
                                             <div class="col-span-7">
                                                 <h1 class="-mb-6 text-sm leading-6 font-semibold text-purple-500">
                                                     {{ $selectedComponent->category->category }}
-
                                                 </h1>
                                                 <div id="overview" class="pt-8">
                                                     <h2
@@ -401,11 +414,20 @@
                                                             class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                             aria-label="Anchor">#</a>
                                                     </h2>
-                                                    <div
-                                                        class="p-4 rounded-md border border-gray-200 dark:border-gray-800">
-                                                        <iframe src="{{ route('preview.show', $selectedComponent) }}"
-                                                            class="w-full h-[550px] bg-white dark:bg-bgDark rounded shadow"
-                                                            frameborder="0" loading="lazy"></iframe>
+                                                    <div class="relative">
+                                                        <div
+                                                            class="absolute top-0 right-0 left-0 flex justify-between items-center px-4 py-2 border border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-t-md">
+                                                            <span
+                                                                class="text-sm font-medium text-gray-900 dark:text-gray-200">Live
+                                                                Preview</span>
+                                                        </div>
+                                                        <div
+                                                            class="pt-14 px-4 pb-4 rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                                                            <iframe
+                                                                src="{{ route('preview.show', $selectedComponent) }}"
+                                                                class="w-full h-[550px] bg-white dark:bg-bgDark rounded shadow"
+                                                                frameborder="0" loading="lazy"></iframe>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div id="html" class="pt-8">
@@ -416,8 +438,31 @@
                                                             class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                             aria-label="Anchor">#</a>
                                                     </h2>
-                                                    <pre
-                                                        class="max-h-[590px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
+                                                    <div class="relative">
+                                                        <div
+                                                            class="absolute top-0 right-0 left-0 flex justify-between items-center px-4 py-2 border border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-t-md">
+                                                            <span
+                                                                class="text-sm font-medium text-gray-900 dark:text-gray-200">HTML</span>
+                                                            <button
+                                                                @click="copyToClipboard($refs.htmlCode.textContent)"
+                                                                class="relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none group"
+                                                                x-data="{ copied: false }">
+                                                                <svg class="h-5 w-5" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                                                    </path>
+                                                                </svg>
+                                                                <span
+                                                                    class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded"
+                                                                    x-text="copied ? 'Copied!' : 'Copy'"></span>
+                                                            </button>
+                                                        </div>
+                                                        <pre x-ref="htmlCode"
+                                                            class="border border-gray-200 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800 px-4 pt-10 pb-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
+                                                    </div>
                                                 </div>
 
                                                 <div id="css" class="pt-8">
@@ -428,8 +473,30 @@
                                                             class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                             aria-label="Anchor">#</a>
                                                     </h2>
-                                                    <pre
-                                                        class="max-h-[590px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
+                                                    <div class="relative">
+                                                        <div
+                                                            class="absolute top-0 right-0 left-0 flex justify-between items-center px-4 py-2 border border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-t-md">
+                                                            <span
+                                                                class="text-sm font-medium text-gray-900 dark:text-gray-200">CSS/SCSS</span>
+                                                            <button @click="copyToClipboard($refs.cssCode.textContent)"
+                                                                class="relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none group"
+                                                                x-data="{ copied: false }">
+                                                                <svg class="h-5 w-5" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                                                    </path>
+                                                                </svg>
+                                                                <span
+                                                                    class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded"
+                                                                    x-text="copied ? 'Copied!' : 'Copy'"></span>
+                                                            </button>
+                                                        </div>
+                                                        <pre x-ref="cssCode"
+                                                            class="border border-gray-200 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800 px-4 pt-10 pb-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
+                                                    </div>
                                                 </div>
 
                                                 @if ($selectedComponent->js)
@@ -441,10 +508,75 @@
                                                                 class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
                                                                 aria-label="Anchor">#</a>
                                                         </h2>
-                                                        <pre
-                                                            class="max-h-[590px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
+                                                        <div class="relative">
+                                                            <div
+                                                                class="absolute top-0 right-0 left-0 flex justify-between items-center px-4 py-2 border border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-t-md">
+                                                                <span
+                                                                    class="text-sm font-medium text-gray-900 dark:text-gray-200">JavaScript</span>
+                                                                <button
+                                                                    @click="copyToClipboard($refs.jsCode.textContent)"
+                                                                    class="relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none group"
+                                                                    x-data="{ copied: false }">
+                                                                    <svg class="h-5 w-5" fill="none"
+                                                                        stroke="currentColor" viewBox="0 0 24 24"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round" stroke-width="2"
+                                                                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                                                        </path>
+                                                                    </svg>
+                                                                    <span
+                                                                        class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded"
+                                                                        x-text="copied ? 'Copied!' : 'Copy'"></span>
+                                                                </button>
+                                                            </div>
+                                                            <pre x-ref="jsCode"
+                                                                class="border border-gray-200 bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800 px-4 pt-10 pb-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
+                                                        </div>
                                                     </div>
                                                 @endif
+                                            </div>
+
+                                            <!-- On this page -->
+                                            <div
+                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-[150px] pt-8 pr-8 overflow-y-auto hidden xl:block">
+                                                <h1
+                                                    class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-gray-200">
+                                                    On this page</h1>
+                                                <ul class="ml-1 space-y-2 text-sm" id="on-this-page-nav">
+                                                    <li>
+                                                        <a href="#overview"
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            Overview
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#live-preview"
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            Live Preview
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#html"
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            HTML
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#css"
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            CSS/SCSS
+                                                        </a>
+                                                    </li>
+                                                    @if ($selectedComponent && $selectedComponent->js)
+                                                        <li>
+                                                            <a href="#javascript"
+                                                                class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                                JavaScript
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                </ul>
                                             </div>
 
                                             <!-- On this page -->
@@ -530,6 +662,17 @@
     </div>
 
     <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                this.copied = true;
+                setTimeout(() => {
+                    this.copied = false;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('#on-this-page-nav a');
             const sections = document.querySelectorAll('div[id]');

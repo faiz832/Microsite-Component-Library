@@ -361,53 +361,123 @@
                         </aside>
                     </div>
 
-                    <!-- Content -->
+                    <!-- Main Content -->
                     <div class="min-h-[calc(100vh-114px)]">
-                        <main class="min-h-[calc(100vh-70px)] lg:pl-80 flex flex-col justify-between">
+                        <div class="min-h-[calc(100vh-70px)] lg:pl-72 flex flex-col justify-between">
                             <div class="w-full py-6 sm:py-8">
-                                <main class="lg:col-span-9">
+                                <main class="">
                                     @if ($selectedComponent)
-                                        <h1 class="mb-2 text-sm leading-6 font-semibold text-purple-500">
-                                            {{ $selectedComponent->category->category }}
-                                        </h1>
-                                        <h1
-                                            class="inline-block text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200">
-                                            {{ $selectedComponent->component }}
-                                        </h1>
-                                        <p class="mt-4 text-gray-600 dark:text-gray-300">Component content goes here.
-                                        </p>
+                                        <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
+                                            <!-- Content -->
+                                            <div class="col-span-4">
+                                                <div id="overview">
 
-                                        @if ($selectedComponent->note)
-                                            <div class="mb-4 bg-blue-100 border-l-4 border-blue-500 p-4">
-                                                <p class="text-blue-700">{{ $selectedComponent->note }}</p>
+                                                    <h1 class="mb-2 text-sm leading-6 font-semibold text-purple-500">
+                                                        {{ $selectedComponent->category->category }}
+                                                    </h1>
+                                                </div>
+                                                <h1
+                                                    class="inline-block text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight dark:text-gray-200">
+                                                    {{ $selectedComponent->component }}
+                                                </h1>
+
+                                                @if ($selectedComponent->note)
+                                                    <p class="mt-8 text-gray-600 dark:text-gray-400">
+                                                        {{ $selectedComponent->note }}
+                                                    </p>
+                                                @endif
+                                                <div id="live-preview" class="pt-8">
+                                                    <h2
+                                                        class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
+                                                        Live Preview
+                                                        <a href="#live-preview"
+                                                            class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
+                                                            aria-label="Anchor">#</a>
+                                                    </h2>
+                                                    <div
+                                                        class="p-4 rounded-md border border-gray-200 dark:border-gray-800">
+                                                        <iframe src="{{ route('preview.show', $selectedComponent) }}"
+                                                            class="w-full h-[500px] bg-white dark:bg-bgDark rounded shadow"
+                                                            frameborder="0" loading="lazy"></iframe>
+                                                    </div>
+                                                </div>
+                                                <div id="html" class="pt-8">
+                                                    <h2
+                                                        class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
+                                                        HTML
+                                                        <a href="#html"
+                                                            class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
+                                                            aria-label="Anchor">#</a>
+                                                    </h2>
+                                                    <pre class="max-h-[500px] bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
+                                                </div>
+
+                                                <div id="css" class="pt-8">
+                                                    <h2
+                                                        class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
+                                                        CSS/SCSS
+                                                        <a href="#css"
+                                                            class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
+                                                            aria-label="Anchor">#</a>
+                                                    </h2>
+                                                    <pre class="max-h-[500px] bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
+                                                </div>
+
+                                                @if ($selectedComponent->js)
+                                                    <div id="javascript" class="pt-8">
+                                                        <h2
+                                                            class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
+                                                            JavaScript
+                                                            <a href="#javascript"
+                                                                class="ml-2 flex items-center opacity-0 border-0 group-hover:opacity-100 text-purple-500"
+                                                                aria-label="Anchor">#</a>
+                                                        </h2>
+                                                        <pre class="max-h-[500px] bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
+                                                    </div>
+                                                @endif
                                             </div>
-                                        @endif
 
-                                        <div class="grid md:grid-cols-2 gap-6">
-                                            <div>
-                                                <h3 class="text-xl font-medium mb-2">HTML</h3>
-                                                <pre class="h-40 bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
-                                            </div>
-
-                                            <div>
-                                                <h3 class="text-xl font-medium mb-2">CSS/SCSS</h3>
-                                                <pre class="h-40 bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
-                                            </div>
-                                        </div>
-
-                                        @if ($selectedComponent->js)
-                                            <div class="mt-6">
-                                                <h3 class="text-xl font-medium mb-2">JavaScript</h3>
-                                                <pre class="h-40 bg-gray-100 p-4 rounded overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
-                                            </div>
-                                        @endif
-
-                                        <div class="mt-6">
-                                            <h3 class="text-xl font-medium mb-2">Preview</h3>
-                                            <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
-                                                <iframe src="{{ route('preview.show', $selectedComponent) }}"
-                                                    class="w-full min-h-[300px] bg-white rounded-lg shadow"
-                                                    frameborder="0" loading="lazy"></iframe>
+                                            <!-- On this page -->
+                                            <div
+                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-56 pt-8 pr-8 overflow-y-auto hidden xl:block">
+                                                <h1
+                                                    class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-white">
+                                                    On
+                                                    this page</h1>
+                                                <ul class="ml-4 space-y-2 text-sm" id="on-this-page-nav">
+                                                    <li>
+                                                        <a href="#overview"
+                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            Overview
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#live-preview"
+                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            Live Preview
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#html"
+                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            HTML
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#css"
+                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            CSS/SCSS
+                                                        </a>
+                                                    </li>
+                                                    @if ($selectedComponent && $selectedComponent->js)
+                                                        <li>
+                                                            <a href="#javascript"
+                                                                class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                                JavaScript
+                                                            </a>
+                                                        </li>
+                                                    @endif
+                                                </ul>
                                             </div>
                                         </div>
                                     @else
@@ -442,12 +512,67 @@
                                     </div>
                                 </div>
                             </footer>
-                        </main>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('#on-this-page-nav a');
+            const sections = document.querySelectorAll('div[id]');
+            const headingLinks = document.querySelectorAll('h2 a');
+
+            function setActiveLink() {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 100) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('text-purple-500', 'dark:text-purple-500', 'font-semibold');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('text-purple-500', 'dark:text-purple-500', 'font-semibold');
+                    }
+                });
+            }
+
+            function smoothScroll(target) {
+                const targetElement = document.querySelector(target);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            window.addEventListener('scroll', setActiveLink);
+            setActiveLink(); // Call once to set initial state
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    smoothScroll(target);
+                });
+            });
+
+            headingLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    smoothScroll(target);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

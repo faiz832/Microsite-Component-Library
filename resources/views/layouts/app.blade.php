@@ -48,7 +48,7 @@
 
                     <!-- Content -->
                     <div class="min-h-[calc(100vh-114px)]">
-                        <main class="lg:pl-80">
+                        <main class="lg:pl-64">
                             <div class="w-full py-6 sm:py-8">
                                 {{ $slot }}
                             </div>

@@ -413,7 +413,7 @@
                                                             aria-label="Anchor">#</a>
                                                     </h2>
                                                     <pre
-                                                        class="max-h-[500px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
+                                                        class="max-h-[590px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->html }}</code></pre>
                                                 </div>
 
                                                 <div id="css" class="pt-8">
@@ -425,7 +425,7 @@
                                                             aria-label="Anchor">#</a>
                                                     </h2>
                                                     <pre
-                                                        class="max-h-[500px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
+                                                        class="max-h-[590px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->scss }}</code></pre>
                                                 </div>
 
                                                 @if ($selectedComponent->js)
@@ -438,7 +438,7 @@
                                                                 aria-label="Anchor">#</a>
                                                         </h2>
                                                         <pre
-                                                            class="max-h-[500px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
+                                                            class="max-h-[590px] border border-gray-200 dark:border-gray-800 dark:text-gray-400 dark:bg-gray-800 p-4 rounded-lg overflow-auto"><code>{{ $selectedComponent->js }}</code></pre>
                                                     </div>
                                                 @endif
                                             </div>

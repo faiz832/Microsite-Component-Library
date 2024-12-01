@@ -400,7 +400,7 @@
                                                     <div
                                                         class="p-4 rounded-md border border-gray-200 dark:border-gray-800">
                                                         <iframe src="{{ route('preview.show', $selectedComponent) }}"
-                                                            class="w-full h-[500px] bg-white dark:bg-bgDark rounded shadow"
+                                                            class="w-full h-[550px] bg-white dark:bg-bgDark rounded shadow"
                                                             frameborder="0" loading="lazy"></iframe>
                                                     </div>
                                                 </div>

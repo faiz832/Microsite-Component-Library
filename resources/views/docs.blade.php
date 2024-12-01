@@ -255,16 +255,16 @@
                                                 @foreach ($categories as $category)
                                                     <div class="pb-4">
                                                         <h3
-                                                            class="mb-4 capitalize font-semibold text-gray-800 dark:text-gray-200">
+                                                            class="mb-4 capitalize font-semibold text-gray-900 dark:text-gray-200">
                                                             {{ $category->category }}
                                                         </h3>
                                                         <ul
-                                                            class="ml-2 border-l border-gray-200 dark:border-gray-800 space-y-2">
+                                                            class="ml-2 border-l-2 border-gray-200 dark:border-gray-800 space-y-2">
                                                             @foreach ($category->components as $component)
                                                                 <li class="relative pl-2 group">
                                                                     <!-- Absolute line -->
                                                                     <div
-                                                                        class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300
+                                                                        class="absolute top-0 bottom-0 -left-[2px] w-[2px] transition-colors duration-300
                                                                                 {{ $selectedComponent && $selectedComponent->id === $component->id ? 'bg-purple-600' : 'bg-transparent group-hover:bg-gray-600' }}">
                                                                     </div>
                                                                     <!-- Link -->
@@ -334,15 +334,15 @@
                                     </div>
                                     @foreach ($categories as $category)
                                         <div class="pb-4">
-                                            <h3 class="mb-4 capitalize font-semibold text-gray-800 dark:text-gray-200">
+                                            <h3 class="mb-4 capitalize font-semibold text-gray-900 dark:text-gray-200">
                                                 {{ $category->category }}
                                             </h3>
-                                            <ul class="ml-2 border-l border-gray-200 dark:border-gray-800 space-y-2">
+                                            <ul class="ml-2 border-l-2 border-gray-200 dark:border-gray-800 space-y-2">
                                                 @foreach ($category->components as $component)
                                                     <li class="relative pl-2 group">
                                                         <!-- Absolute line -->
                                                         <div
-                                                            class="absolute top-0 bottom-0 -left-[1px] w-[1px] transition-colors duration-300
+                                                            class="absolute top-0 bottom-0 -left-[2px] w-[2px] transition-colors duration-300
                                                                     {{ $selectedComponent && $selectedComponent->id === $component->id ? 'bg-purple-600' : 'bg-transparent group-hover:bg-gray-600' }}">
                                                         </div>
                                                         <!-- Link -->
@@ -447,38 +447,38 @@
                                             <div
                                                 class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-56 pt-8 pr-8 overflow-y-auto hidden xl:block">
                                                 <h1
-                                                    class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-white">
+                                                    class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-gray-200">
                                                     On
                                                     this page</h1>
-                                                <ul class="ml-4 space-y-2 text-sm" id="on-this-page-nav">
+                                                <ul class="ml-1 space-y-2 text-sm" id="on-this-page-nav">
                                                     <li>
                                                         <a href="#overview"
-                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
                                                             Overview
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#live-preview"
-                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
                                                             Live Preview
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#html"
-                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
                                                             HTML
                                                         </a>
                                                     </li>
                                                     <li>
                                                         <a href="#css"
-                                                            class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
                                                             CSS/SCSS
                                                         </a>
                                                     </li>
                                                     @if ($selectedComponent && $selectedComponent->js)
                                                         <li>
                                                             <a href="#javascript"
-                                                                class="text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
+                                                                class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
                                                                 JavaScript
                                                             </a>
                                                         </li>
@@ -542,9 +542,11 @@
                 });
 
                 navLinks.forEach(link => {
-                    link.classList.remove('text-purple-500', 'dark:text-purple-500', 'font-semibold');
+                    link.classList.remove('text-purple-500', 'dark:text-purple-500', 'font-semibold',
+                        'border-l-2', 'border-purple-500');
                     if (link.getAttribute('href') === '#' + currentSection) {
-                        link.classList.add('text-purple-500', 'dark:text-purple-500', 'font-semibold');
+                        link.classList.add('text-purple-500', 'dark:text-purple-500', 'font-semibold',
+                            'border-l-2', 'border-purple-500');
                     }
                 });
             }

@@ -381,13 +381,13 @@
 
                     <!-- Main Content -->
                     <div class="min-h-[calc(100vh-114px)]">
-                        <div class="min-h-[calc(100vh-70px)] lg:pl-64 flex flex-col justify-between">
+                        <div class="min-h-[calc(100vh-70px)] lg:pl-[270px] flex flex-col justify-between">
                             <div class="w-full py-6 sm:py-8">
                                 <main class="">
                                     @if ($selectedComponent)
-                                        <div class="grid grid-cols-1 xl:grid-cols-8">
+                                        <div class="grid grid-cols-1 xl:grid-cols-7">
                                             <!-- Content -->
-                                            <div class="col-span-7">
+                                            <div class="col-span-6">
                                                 <h1 class="-mb-6 text-sm leading-6 font-semibold text-purple-500">
                                                     {{ $selectedComponent->category->category }}
                                                 </h1>
@@ -574,7 +574,7 @@
 
                                             <!-- On this page -->
                                             <div
-                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-[150px] pt-8 pr-8 overflow-y-auto hidden xl:block">
+                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-[160px] pt-8 pr-8 overflow-y-auto hidden xl:block">
                                                 <h1
                                                     class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-gray-200">
                                                     On

@@ -1,5 +1,7 @@
 <title>Edit Component - Microsite Component Library</title>
 
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 <x-app-layout>
     <div>
         <div class="p-4 sm:p-8 rounded-md border border-gray-200 dark:border-gray-800">
@@ -60,29 +62,33 @@
                         <div class="mt-4">
                             <x-input-label for="note" value="{{ __('Insert Note') }}" />
 
-                            <textarea id="note" name="note" type="text" class="mt-1 block w-full h-56 rounded-md"
-                                placeholder="{{ __('Insert some general notes') }}">{{ $components->note }}</textarea>
+                            <div id="note-editor"
+                                class="h-56 text-base rounded-b-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+                            </div>
+                            <input type="hidden" name="note" id="note" value="{{ $components->note }}">
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="html" value="{{ __('Insert HTML Code') }}" />
 
-                            <textarea id="html" name="html" type="text" class="mt-1 block w-full h-56 rounded-md"
-                                placeholder="{{ __('Insert HTML Code here refer to the documentation') }}" required>{{ $components->html }}</textarea>
+                            <textarea id="html" name="html" type="text"
+                                class="mt-1 block w-full h-56 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm"
+                                required>{{ $components->html }}</textarea>
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="scss" value="{{ __('Insert SCSS Code') }}" />
 
-                            <textarea id="scss" name="scss" type="text" class="mt-1 block w-full h-56 rounded-md"
-                                placeholder="{{ __('Insert SCSS Code here refer to the documentation') }}" required>{{ $components->scss }}</textarea>
+                            <textarea id="scss" name="scss" type="text"
+                                class="mt-1 block w-full h-56 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm"
+                                required>{{ $components->scss }}</textarea>
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="js" value="{{ __('Insert JavaScript Code') }}" />
 
-                            <textarea id="js" name="js" type="text" class="mt-1 block w-full h-56 rounded-md"
-                                placeholder="{{ __('Insert JavaScript Code here refer to the documentation') }}">{{ $components->js }}</textarea>
+                            <textarea id="js" name="js" type="text"
+                                class="mt-1 block w-full h-56 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-purple-500 dark:focus:border-purple-600 focus:ring-purple-500 dark:focus:ring-purple-600 rounded-md shadow-sm">{{ $components->js }}</textarea>
                         </div>
 
                         <div class="mt-6 flex">
@@ -102,6 +108,81 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editorConfigs = [{
+                id: 'note-editor',
+                inputId: 'note',
+                initialValue: @json($components->note), // Ambil nilai awal dari $components->note
+                modules: {}
+            }];
+
+            // Editors storage
+            const editors = {};
+
+            // Initialize Quill editors
+            editorConfigs.forEach(config => {
+                const editorEl = document.getElementById(config.id);
+                const inputEl = document.getElementById(config.inputId);
+
+                if (editorEl && inputEl) {
+                    const quill = new Quill(editorEl, {
+                        theme: 'snow',
+                        modules: config.modules,
+                    });
+
+                    // Set initial value if provided
+                    if (config.initialValue) {
+                        quill.root.innerHTML = config.initialValue;
+                    }
+
+                    // Store reference to the editor
+                    editors[config.id] = {
+                        quill: quill,
+                        input: inputEl
+                    };
+
+                    // Add event listener to update hidden input
+                    quill.on('text-change', () => {
+                        inputEl.value = quill.root.innerHTML;
+                    });
+
+                    // Add classes to toolbar
+                    const toolbarEl = document.querySelectorAll('.ql-toolbar');
+
+                    if (toolbarEl.length > 0) {
+                        toolbarEl.forEach(toolbar => {
+                            toolbar.classList.add(
+                                'mt-1',
+                                'rounded-t-md',
+                                'border',
+                                'border-gray-300',
+                                'dark:border-gray-700',
+                                'dark:text-gray-300',
+                                'shadow-sm'
+                            );
+                        });
+                    }
+                }
+            });
+
+            // Form submission
+            var form = document.getElementById('componentForm');
+            var submitButton = document.getElementById('submitButton');
+
+            submitButton.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Update all hidden inputs with editor content
+                Object.values(editors).forEach(editor => {
+                    editor.input.value = editor.quill.root.innerHTML;
+                });
+
+                form.submit();
+            });
+        });
+    </script>
     <script>
         // Contoh menggunakan jQuery
         $(document).ready(function() {

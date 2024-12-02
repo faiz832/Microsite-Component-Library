@@ -316,7 +316,7 @@
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
                     <!-- Sidebar -->
                     <div
-                        class="hidden lg:block fixed z-40 inset-0 top-[4.05rem] left-0 right-auto w-[17rem] pb-10 pl-8 pr-6 overflow-y-auto">
+                        class="hidden lg:block fixed z-40 inset-0 top-[4.05rem] left-0 right-auto w-[17rem] pb-10 pl-8 pr-6 overflow-y-auto overflow-x-hidden">
                         <aside class="w-56">
                             <nav class="lg:text-sm lg:leading-6 relative pb-20">
                                 <!-- Search -->

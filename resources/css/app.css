@@ -32,3 +32,30 @@
         box-shadow: 0 0 0 1px rgba(168 85 247 / var(--tw-border-opacity, 1)) !important;
     }
 }
+
+@layer utilities {
+    .quill-content {
+        @apply text-gray-600 dark:text-gray-400;
+    }
+    .quill-content ol {
+        @apply list-decimal ml-5 pl-4;
+    }
+    .quill-content ul {
+        @apply list-disc ml-5 pl-4;
+    }
+    .quill-content li {
+        @apply mb-1;
+    }
+    .quill-content p {
+        @apply my-2;
+    }
+    .quill-content h1 {
+        @apply text-2xl font-bold mb-3;
+    }
+    .quill-content h2 {
+        @apply text-xl font-semibold mb-2;
+    }
+    .quill-content h3 {
+        @apply text-lg font-semibold mb-2;
+    }
+}

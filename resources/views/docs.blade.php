@@ -403,9 +403,9 @@
                                                 </div>
 
                                                 @if ($selectedComponent->note)
-                                                    <p class="mt-4 text-gray-600 dark:text-gray-400">
+                                                    <div class="mt-4 quill-content">
                                                         {!! $selectedComponent->note !!}
-                                                    </p>
+                                                    </div>
                                                 @endif
 
                                                 <div id="live-preview" class="pt-8">

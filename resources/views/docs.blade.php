@@ -391,6 +391,7 @@
                                                 <h1 class="-mb-6 text-sm leading-6 font-semibold text-purple-500">
                                                     {{ $selectedComponent->category->category }}
                                                 </h1>
+
                                                 <div id="overview" class="pt-8">
                                                     <h2
                                                         class="flex group text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight dark:text-gray-200">
@@ -406,6 +407,7 @@
                                                         {{ $selectedComponent->note }}
                                                     </p>
                                                 @endif
+
                                                 <div id="live-preview" class="pt-8">
                                                     <h2
                                                         class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
@@ -430,7 +432,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="html" class="pt-8">
+
+                                                <div id="html" class="pt-8" x-data="{ copied: false }">
                                                     <h2
                                                         class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
                                                         HTML
@@ -444,10 +447,10 @@
                                                             <span
                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-200">HTML</span>
                                                             <button
-                                                                @click="copyToClipboard($refs.htmlCode.textContent)"
+                                                                @click="copied = !copied; copyToClipboard($refs.htmlCode.textContent); setTimeout(() => copied = !copied, 1000)"
                                                                 class="relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none group"
-                                                                x-data="{ copied: false }">
-                                                                <svg class="h-5 w-5" fill="none"
+                                                                aria-label="Copy HTML code">
+                                                                <svg x-show="!copied" class="h-5 w-5" fill="none"
                                                                     stroke="currentColor" viewBox="0 0 24 24"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <path stroke-linecap="round"
@@ -455,9 +458,19 @@
                                                                         d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
                                                                     </path>
                                                                 </svg>
-                                                                <span
-                                                                    class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded"
-                                                                    x-text="copied ? 'Copied!' : 'Copy'"></span>
+                                                                <svg x-show="copied"
+                                                                    class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                                                                    style="display: none;" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M5 13l4 4L19 7"></path>
+                                                                </svg>
+                                                                <span x-show="!copied"
+                                                                    class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded">Copy</span>
+                                                                <span x-show="copied" style="display: none;"
+                                                                    class="tooltip block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded">Copied!</span>
                                                             </button>
                                                         </div>
                                                         <pre x-ref="htmlCode"
@@ -465,7 +478,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div id="css" class="pt-8">
+                                                <div id="css" class="pt-8" x-data="{ copied: false }">
                                                     <h2
                                                         class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
                                                         CSS/SCSS
@@ -478,10 +491,11 @@
                                                             class="absolute top-0 right-0 left-0 flex justify-between items-center px-4 py-2 border border-gray-200 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-t-md">
                                                             <span
                                                                 class="text-sm font-medium text-gray-900 dark:text-gray-200">CSS/SCSS</span>
-                                                            <button @click="copyToClipboard($refs.cssCode.textContent)"
+                                                            <button
+                                                                @click="copied = !copied; copyToClipboard($refs.cssCode.textContent); setTimeout(() => copied = !copied, 1000)"
                                                                 class="relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none group"
-                                                                x-data="{ copied: false }">
-                                                                <svg class="h-5 w-5" fill="none"
+                                                                aria-label="Copy CSS/SCSS code">
+                                                                <svg x-show="!copied" class="h-5 w-5" fill="none"
                                                                     stroke="currentColor" viewBox="0 0 24 24"
                                                                     xmlns="http://www.w3.org/2000/svg">
                                                                     <path stroke-linecap="round"
@@ -489,9 +503,19 @@
                                                                         d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
                                                                     </path>
                                                                 </svg>
-                                                                <span
-                                                                    class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded"
-                                                                    x-text="copied ? 'Copied!' : 'Copy'"></span>
+                                                                <svg x-show="copied"
+                                                                    class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                                                                    style="display: none;" fill="none"
+                                                                    stroke="currentColor" viewBox="0 0 24 24"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <path stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="M5 13l4 4L19 7"></path>
+                                                                </svg>
+                                                                <span x-show="!copied"
+                                                                    class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded">Copy</span>
+                                                                <span x-show="copied" style="display: none;"
+                                                                    class="tooltip block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded">Copied!</span>
                                                             </button>
                                                         </div>
                                                         <pre x-ref="cssCode"
@@ -500,7 +524,7 @@
                                                 </div>
 
                                                 @if ($selectedComponent->js)
-                                                    <div id="javascript" class="pt-8">
+                                                    <div id="javascript" class="pt-8" x-data="{ copied: false }">
                                                         <h2
                                                             class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
                                                             JavaScript
@@ -514,20 +538,31 @@
                                                                 <span
                                                                     class="text-sm font-medium text-gray-900 dark:text-gray-200">JavaScript</span>
                                                                 <button
-                                                                    @click="copyToClipboard($refs.jsCode.textContent)"
+                                                                    @click="copied = !copied; copyToClipboard($refs.jsCode.textContent); setTimeout(() => copied = !copied, 1000)"
                                                                     class="relative text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none group"
                                                                     x-data="{ copied: false }">
-                                                                    <svg class="h-5 w-5" fill="none"
-                                                                        stroke="currentColor" viewBox="0 0 24 24"
+                                                                    <svg x-show="!copied" class="h-5 w-5"
+                                                                        fill="none" stroke="currentColor"
+                                                                        viewBox="0 0 24 24"
                                                                         xmlns="http://www.w3.org/2000/svg">
                                                                         <path stroke-linecap="round"
                                                                             stroke-linejoin="round" stroke-width="2"
                                                                             d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
                                                                         </path>
                                                                     </svg>
-                                                                    <span
-                                                                        class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded"
-                                                                        x-text="copied ? 'Copied!' : 'Copy'"></span>
+                                                                    <svg x-show="copied"
+                                                                        class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                                                                        style="display: none;" fill="none"
+                                                                        stroke="currentColor" viewBox="0 0 24 24"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path stroke-linecap="round"
+                                                                            stroke-linejoin="round" stroke-width="2"
+                                                                            d="M5 13l4 4L19 7"></path>
+                                                                    </svg>
+                                                                    <span x-show="!copied"
+                                                                        class="tooltip hidden group-hover:block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded">Copy</span>
+                                                                    <span x-show="copied" style="display: none;"
+                                                                        class="tooltip block absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full px-2 py-1 bg-gray-800 text-white text-xs rounded">Copied!</span>
                                                                 </button>
                                                             </div>
                                                             <pre x-ref="jsCode"
@@ -535,48 +570,6 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                            </div>
-
-                                            <!-- On this page -->
-                                            <div
-                                                class="fixed z-10 top-[4.05rem] bottom-0 right-0 left-auto w-[150px] pt-8 pr-8 overflow-y-auto hidden xl:block">
-                                                <h1
-                                                    class="mb-4 text-sm leading-6 font-semibold text-gray-900 dark:text-gray-200">
-                                                    On this page</h1>
-                                                <ul class="ml-1 space-y-2 text-sm" id="on-this-page-nav">
-                                                    <li>
-                                                        <a href="#overview"
-                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
-                                                            Overview
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#live-preview"
-                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
-                                                            Live Preview
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#html"
-                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
-                                                            HTML
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#css"
-                                                            class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
-                                                            CSS/SCSS
-                                                        </a>
-                                                    </li>
-                                                    @if ($selectedComponent && $selectedComponent->js)
-                                                        <li>
-                                                            <a href="#javascript"
-                                                                class="pl-3 text-gray-600 hover:text-purple-500 dark:text-gray-300 dark:hover:text-purple-500 transition">
-                                                                JavaScript
-                                                            </a>
-                                                        </li>
-                                                    @endif
-                                                </ul>
                                             </div>
 
                                             <!-- On this page -->
@@ -663,12 +656,7 @@
 
     <script>
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                this.copied = true;
-                setTimeout(() => {
-                    this.copied = false;
-                }, 2000);
-            }).catch(err => {
+            navigator.clipboard.writeText(text).catch(err => {
                 console.error('Failed to copy text: ', err);
             });
         }

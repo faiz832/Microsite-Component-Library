@@ -404,7 +404,7 @@
 
                                                 @if ($selectedComponent->note)
                                                     <p class="mt-4 text-gray-600 dark:text-gray-400">
-                                                        {{ $selectedComponent->note }}
+                                                        {!! $selectedComponent->note !!}
                                                     </p>
                                                 @endif
 

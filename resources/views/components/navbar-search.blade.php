@@ -77,7 +77,7 @@
                         <h3 class="sticky top-0 z-10 pt-6 pb-2 text-base font-semibold bg-white dark:bg-gray-800"
                             x-text="'Version ' + version"></h3>
                         <template x-for="(categoryGroup, category) in versionGroup" :key="category">
-                            <div class="">
+                            <div class="mb-4">
                                 <h4 class="font-medium" x-text="category"></h4>
                                 <ul class="space-y-2">
                                     <template x-for="component in categoryGroup" :key="component.id">

@@ -135,7 +135,13 @@
 
                     // Add event listener to update hidden input
                     quill.on('text-change', () => {
-                        inputEl.value = quill.root.innerHTML;
+                        const content = quill.root.innerHTML;
+                        // Check if the content is just an empty paragraph
+                        if (content === '<p><br></p>' || content.trim() === '') {
+                            inputEl.value = '';
+                        } else {
+                            inputEl.value = content;
+                        }
                     });
 
                     // Add classes to toolbar
@@ -166,7 +172,13 @@
 
                 // Update all hidden inputs with editor content
                 Object.values(editors).forEach(editor => {
-                    editor.input.value = editor.quill.root.innerHTML;
+                    const content = editor.quill.root.innerHTML;
+                    // Check if the content is just an empty paragraph or whitespace
+                    if (content === '<p><br></p>' || content.trim() === '') {
+                        editor.input.value = '';
+                    } else {
+                        editor.input.value = content;
+                    }
                 });
 
                 form.submit();

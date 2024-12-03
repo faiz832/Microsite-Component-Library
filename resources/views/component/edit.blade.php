@@ -114,12 +114,17 @@
             const editorConfigs = [{
                 id: 'note-editor',
                 inputId: 'note',
-                initialValue: @json($components->note), // Ambil nilai awal dari $components->note
+                initialValue: @json($components->note), // Get initial value from $components->note
                 modules: {}
             }];
 
             // Editors storage
             const editors = {};
+
+            // Function to check if content is empty or just whitespace
+            function isContentEmpty(content) {
+                return !content || content === '<p><br></p>' || content.trim() === '';
+            }
 
             // Initialize Quill editors
             editorConfigs.forEach(config => {
@@ -132,8 +137,8 @@
                         modules: config.modules,
                     });
 
-                    // Set initial value if provided
-                    if (config.initialValue) {
+                    // Set initial value if provided and not empty
+                    if (config.initialValue && !isContentEmpty(config.initialValue)) {
                         quill.root.innerHTML = config.initialValue;
                     }
 
@@ -145,7 +150,8 @@
 
                     // Add event listener to update hidden input
                     quill.on('text-change', () => {
-                        inputEl.value = quill.root.innerHTML;
+                        const content = quill.root.innerHTML;
+                        inputEl.value = isContentEmpty(content) ? '' : content;
                     });
 
                     // Add classes to toolbar
@@ -176,7 +182,8 @@
 
                 // Update all hidden inputs with editor content
                 Object.values(editors).forEach(editor => {
-                    editor.input.value = editor.quill.root.innerHTML;
+                    const content = editor.quill.root.innerHTML;
+                    editor.input.value = isContentEmpty(content) ? '' : content;
                 });
 
                 form.submit();

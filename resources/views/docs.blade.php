@@ -408,7 +408,7 @@
                                                     </div>
                                                 @endif
 
-                                                <div id="live-preview" class="">
+                                                <div id="live-preview" class="pt-8">
                                                     <h2
                                                         class="mb-2 group flex font-bold text-gray-900 dark:text-gray-200">
                                                         Live Preview

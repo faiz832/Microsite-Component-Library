@@ -39,9 +39,9 @@
         <x-navbar />
 
         <!-- Page Content -->
-        <div class="min-h-[calc(100vh-114px)]">
+        <div class="min-h-[calc(100vh-114px)] flex justify-center items-center">
             <div class="px-4 sm:px-6 md:px-8">
-                <div class="relative max-w-5xl mx-auto py-14 sm:pt-24 lg:pt-32">
+                <div class="relative max-w-5xl mx-auto py-14">
                     <h1
                         class="text-gray-900 font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-center dark:text-white">
                         Build responsive microsites easily and efficiently with the Microsite Component Library.</h1>

@@ -29,6 +29,8 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -61,6 +63,12 @@
         <!-- Footer -->
         <x-footer />
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script src="{{ asset('js/table.js') }}"></script>
+    <script>
+        new DataTable('#dataTable');
+    </script>
 </body>
 
 </html>

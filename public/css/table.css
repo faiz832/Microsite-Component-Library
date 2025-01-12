@@ -1,0 +1,82 @@
+#dataTable thead tr.border-b.border-gray-100 {
+    border: none !important;
+}
+
+div.col-start-2.justify-self-end {
+    justify-self: end;
+}
+#dataTable_wrapper .grid .justify-self-start .dt-length #dt-length-0 {
+    padding-right: 2rem !important;
+}
+
+#dataTable_wrapper .grid .justify-self-start .dt-length label,
+#dataTable_wrapper .grid .justify-self-end .dt-search label,
+#dataTable_wrapper .grid .justify-self-start .dt-info {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
+
+#dataTable_wrapper .grid .justify-self-start .dt-length select {
+    background-color: transparent !important;
+    --tw-text-opacity: 1;
+    border-color: rgb(156 163 175 / var(--tw-text-opacity, 1)) !important;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1)) !important;
+    font-size: 0.875rem !important;
+    padding: 0.25rem 1rem !important;
+    margin-right: 0.5rem !important;
+}
+
+#dataTable_wrapper .grid .justify-self-start .dt-length select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#dataTable_wrapper .grid .justify-self-end .dt-search input {
+    background-color: transparent !important;
+    --tw-text-opacity: 1;
+    border-color: rgb(156 163 175 / var(--tw-text-opacity, 1)) !important;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1)) !important;
+    font-size: 0.875rem !important;
+    padding: 0.25rem 0.5rem !important;
+}
+
+#dataTable_wrapper .grid .justify-self-end .dt-search input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#dataTable_wrapper .grid .justify-self-end .dt-paging nav .pagination a {
+    background-color: transparent !important;
+    --tw-text-opacity: 1;
+    border-color: rgb(156 163 175 / var(--tw-text-opacity, 1)) !important;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1)) !important;
+    border-radius: 10px;
+}
+
+#dataTable_wrapper .grid .justify-self-end .dt-paging nav .pagination a:focus {
+    box-shadow: none;
+}
+
+#dataTable_wrapper .grid-cols-1 {
+    overflow: scroll;
+}
+
+div.justify-self-start {
+    display: flex;
+    align-items: center;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#dataTable tbody tr .dt-empty {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(156 163 175 / var(--tw-text-opacity, 1));
+}
